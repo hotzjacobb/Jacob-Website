@@ -25,27 +25,35 @@ body {
 .triangle {
     width: 0;
     height: 0;
-    border-left: 100px solid transparent;
-    border-right: 100px solid transparent;
-    border-bottom: 100px solid blanchedalmond;
+    border-left: 125px solid transparent;
+    border-right: 125px solid transparent;
+    border-bottom: 300px solid blanchedalmond;
+    transform: skew(-30deg);
+}
+
+.parellelogram {
+    height: 295px;
+    width: 250px;
+    transform: skew(30deg);
 }
 
 .red {
-    background-color: rgba(231, 34, 41, 1);
+    background-color: rgba(231, 34, 41, .8);
     left: -300px;
 }
 
 .blanchedalmond {
-    background-color: blanchedalmond;
-    left: -400px;
+    /*colour set in triangle due to being part of borders*/
+    left: 0px;
+    z-index: 5;
 }
 
 .blue {
-    background-color: rgba(61, 93, 170, 1);
+    background-color: rgba(61, 93, 170, .8);
     left: 100px;
 }
 
 .yellow {
-    background-color: rgba(251, 193, 24, 1);
+    background-color: rgba(251, 193, 24, .8);
     left: 300px;
 }
