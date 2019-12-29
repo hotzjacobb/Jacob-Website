@@ -13,7 +13,7 @@ header {
 
 /*  the site's navigation mechanishm used by clicking on shapes */
 #shape-container {
-    height: 70%;
+    height: 65%;
     overflow: hidden;
 }
 
@@ -70,22 +70,38 @@ header {
 
 /*  contact info and prescence on other sites */
 footer {
-   height: 15%;
-   grid-template-areas: "email git linkedin";
+   height: 20%;
+   width: 100%;
+   display: grid;
+   grid-template-columns: repeat(3, 1fr);
 }
 
 .icon { 
-    background-color: aqua;
+    vertical-align: bottom;
+}
+
+img {
+    /* reduce to appropriate image size */
+    max-width:20%;
+    height: auto;
+    /* centre image vertically and horizontally */
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
 }
 
 #email {
-    grid-area: email;
+    grid-column: 1 / span 1;
+    opacity: .8;
 }
 
 #git {
-    grid-area: git;
+    grid-column: 2 / span 1;
+    opacity: .8;
 }
 
 #linkedin {
-    grid-area: linkedin;
+    grid-column: 3 / span 1;
+    opacity: .8;
 }
