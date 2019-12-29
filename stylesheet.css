@@ -11,6 +11,16 @@ header {
     height: 15%;
 }
 
+#name-container {
+    position: relative;
+    top: 50%;
+    text-align: center;
+    /*color: rgb(145, 110, 59);*/
+    color: black;
+    font-size: xx-large;
+    font-family: 'Poiret One';
+}
+
 /*  the site's navigation mechanishm used by clicking on shapes */
 #shape-container {
     height: 65%;
