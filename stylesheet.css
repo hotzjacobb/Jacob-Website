@@ -17,7 +17,7 @@ header {
     text-align: center;
     /*color: rgb(145, 110, 59);*/
     color: black;
-    font-size: xx-large;
+    font-size: 200%;
     font-family: 'Poiret One';
 }
 
@@ -58,14 +58,14 @@ header {
 }
 
 .red {
-    background-color: rgba(231, 34, 41, .8);
+    background-color: rgba(231, 34, 41, .88);
     left: -300px;
 }
 
 .blanchedalmond {
     /*colour set in triangle due to being part of borders*/
     left: 0px;
-    z-index: 5;
+    z-index: 4;
 }
 
 .blue {
@@ -78,6 +78,58 @@ header {
     left: 300px;
 }
 
+h2 {
+    font-family: 'Poiret One';
+    font-size: 190%;
+    color: black;
+    font-style: normal;
+    font-weight: 600;
+}
+
+#red-text {
+    transform: rotate(-47deg) translate(15px, 50px);
+}
+
+#yellow-text {
+    transform: translate(110px) rotate(60deg) translate(155px, 70px);
+}
+
+#almond-text {
+    transform: skew(30deg); /*  unskew text */
+    display: inline-block;
+    text-align: center;
+    position: relative;
+    top: 175px;
+    left: -40px;
+}
+
+#blue-text {
+    transform: skew(-30deg); 
+    position: relative;
+    top: 130px;
+    left: 138px;
+    visibility: hidden;
+}
+
+#blue-text-alt {   /*  css gives no good way to overide stacking content
+    inheritance so this is a hack to get around that; this text is
+    a child of the yellow circle so that it is at the front. The #blue-text
+    element is a child  of the blue circle in the same absolute position 
+    (subimposed and hidden) but allowing for easier creation of animations
+    (if creating an animation where the blue parallelogram is brought to 
+    the front, hide #blue-text-alt and unhide #blue-text for ease of use */
+    position: relative;
+    top: 72px;
+    left: 77px;
+}
+
+#blue-text-exp {
+    transform: skew(-30deg); 
+    position: relative;
+    top: -65px;
+    left: 55px;
+}
+
 /*  contact info and prescence on other sites */
 footer {
    height: 20%;
@@ -88,6 +140,7 @@ footer {
 
 .icon { 
     vertical-align: bottom;
+    z-index: 5;
 }
 
 img {
