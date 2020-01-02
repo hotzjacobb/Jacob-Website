@@ -69,7 +69,7 @@ header {
 }
 
 .blue {
-    background-color: rgba(61, 93, 170, .8);
+    background-color: rgba(61, 93, 170, .7);
     left: 100px;
 }
 
@@ -99,8 +99,8 @@ h2 {
     display: inline-block;
     text-align: center;
     position: relative;
-    top: 160px;
-    left: -38px;
+    top: 175px;
+    left: -50px;
 }
 
 #blue-text {
@@ -126,8 +126,8 @@ h2 {
 #blue-text-exp {
     transform: skew(-30deg); 
     position: relative;
-    top: -65px;
-    left: 55px;
+    top: -70px;
+    left: 110px;
 }
 
 /*  contact info and prescence on other sites */
