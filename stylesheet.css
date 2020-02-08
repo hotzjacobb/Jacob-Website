@@ -21,7 +21,7 @@ header {
     font-family: 'Poiret One';
 }
 
-/*  the site's navigation mechanishm used by clicking on shapes */
+/*  the shapes' portion of the canvas */
 #shape-container {
     height: 65%;
     overflow: hidden;
@@ -78,20 +78,26 @@ header {
     left: 300px;
 }
 
-h2 {
+h2, button {
     font-family: 'Poiret One';
     font-size: 190%;
     color: black;
     font-style: normal;
     font-weight: 600;
+    background: none;
+    border: none;
 }
 
 #red-text {
-    transform: rotate(-47deg) translate(15px, 50px);
+    transform: rotate(-47deg) translate(-40px, 123px);
 }
 
 #yellow-text {
-    transform: translate(110px) rotate(60deg) translate(155px, 70px);
+    transform: rotate(60deg);
+    position: relative;
+    z-index: 5;
+    top: 92px;
+    left: 170px;
 }
 
 #almond-text {
@@ -99,13 +105,13 @@ h2 {
     display: inline-block;
     text-align: center;
     position: relative;
-    top: 175px;
-    left: -50px;
+    top: 195px;
+    left: -48px;
 }
 
 #blue-text {
     transform: skew(-30deg); 
-    position: relative;
+    position: absolute;
     top: 130px;
     left: 138px;
     visibility: hidden;
@@ -119,15 +125,15 @@ h2 {
     (if creating an animation where the blue parallelogram is brought to 
     the front, hide #blue-text-alt and unhide #blue-text for ease of use */
     position: relative;
-    top: 72px;
-    left: 77px;
+    top: 163px;
+    left: -6px;
 }
 
 #blue-text-exp {
     transform: skew(-30deg); 
     position: relative;
-    top: -70px;
-    left: 110px;
+    top: 12px;
+    left: 108px;
 }
 
 /*  contact info and prescence on other sites */
