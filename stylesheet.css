@@ -89,7 +89,10 @@ h2, button {
 }
 
 #red-text {
-    transform: rotate(-47deg) translate(-40px, 123px);
+    transform: rotate(-47deg);
+    position: relative;
+    top: 100px;
+    left: 60px;
 }
 
 #yellow-text {
