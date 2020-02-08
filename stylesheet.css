@@ -88,14 +88,14 @@ h2, button {
     border: none;
 }
 
-#red-text {
+#proj {
     transform: rotate(-47deg);
     position: relative;
-    top: 100px;
-    left: 60px;
+    top: 110px;
+    left: 75px;
 }
 
-#yellow-text {
+#misc {
     transform: rotate(60deg);
     position: relative;
     z-index: 5;
@@ -103,7 +103,7 @@ h2, button {
     left: 170px;
 }
 
-#almond-text {
+#about {
     transform: skew(30deg); /*  unskew text */
     display: inline-block;
     text-align: center;
@@ -112,7 +112,7 @@ h2, button {
     left: -48px;
 }
 
-#blue-text {
+#resume-alt {             /* explanation beside #resume */
     transform: skew(-30deg); 
     position: absolute;
     top: 130px;
@@ -120,7 +120,21 @@ h2, button {
     visibility: hidden;
 }
 
-#blue-text-alt {   /*  css gives no good way to overide stacking content
+#blog {    /* similar to resume and resume-alt; 
+    css has no good way to override a parent's z-index; if not
+    the triangle would cover the blog button and make it unclickable.
+    Thus we resort to this solution. For easo-of-use with animations 
+    bring the parralelogram to the front and then use #blog-alt. 
+    Hide #blog. */
+    transform: skew(30deg); /*  unskew text */
+    display: inline-block;
+    text-align: center;
+    position: relative;
+    top: -60px;
+    left: -102px;
+}
+
+#resume {   /*  css gives no good way to overide stacking content
     inheritance so this is a hack to get around that; this text is
     a child of the yellow circle so that it is at the front. The #blue-text
     element is a child  of the blue circle in the same absolute position 
@@ -132,11 +146,12 @@ h2, button {
     left: -6px;
 }
 
-#blue-text-exp {
+#blog-alt {
     transform: skew(-30deg); 
     position: relative;
     top: 12px;
     left: 108px;
+    visibility: hidden;
 }
 
 /*  contact info and prescence on other sites */
