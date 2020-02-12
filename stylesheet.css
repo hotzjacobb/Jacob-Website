@@ -34,6 +34,10 @@ header {
     top: 0; 
     bottom: 0;
     margin: auto;
+    -webkit-transition: 3.0s ease-in-out;  /* triggered by js when other shape clicked */
+    -moz-transition: 3.0s ease-in-out;
+    -o-transition: 3.0s ease-in-out;
+    transition: 3.0s ease-in-out;
 }
 
 .circle {
@@ -209,3 +213,5 @@ p {
     grid-column: 3 / span 1;
     opacity: .8;
 }
+
+/* shape animations */

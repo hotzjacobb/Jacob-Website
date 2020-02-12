@@ -26,6 +26,8 @@ function onClickProjects() {
             // potentially set display to none here during transiton
             shape.style.position = "absolute"
             shape.style.left = "50%"
+            shape.style.transform = "rotate(90deg)"
+            shape.style.opacity = 0
         }
     }
 }
