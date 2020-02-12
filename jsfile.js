@@ -19,14 +19,17 @@ function onClickProjects() {
     for (shape of shapes) {
         if (shape.className !== "shape circle red") {
             // shape.style.display = "none"
-            var rect = shape.getBoundingClientRect()
-            // Potentially change to x and y and use subtraction
-            var shapeLeftPos = rect.left
-            var shapeTopPos = rect.shapeTopPos
             // potentially set display to none here during transiton
+            let xVector = Math.random() - 1
+            let yVector = Math.random() - 1
+            let transformAngle = Math.atan2(yVector, xVector)  // angle in radians
+            var rect = shape.getBoundingClientRect()
+            var shapeLeftPos = rect.left
+            var shapeTopPos = rect.top
             shape.style.position = "absolute"
             shape.style.left = "50%"
-            shape.style.transform = "rotate(90deg)"
+            let rotationAngle = Math.random() * 360
+            shape.style.transform = "rotate(" + rotationAngle.toString() + "deg)"
             shape.style.opacity = 0
         }
     }
