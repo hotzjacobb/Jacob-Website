@@ -22,14 +22,33 @@ function onClickProjects() {
             // potentially set display to none here during transiton
             let xVector = Math.random() - 1
             let yVector = Math.random() - 1
-            let transformAngle = Math.atan2(yVector, xVector)  // angle in radians
+            if (Math.abs(yVector) > Math.abs(xVector)) {   // get movement for one frame
+                xVector = 1
+                yVector = Math.round(yVector / xVector)
+            } else {
+                yVector = 1
+                xVector = Math.round(xVector / yVector)
+            }
+            console.log(shape.className + "'s x-vec is " + xVector.toString())
+            console.log(shape.className + "'s y-vec is " + xVector.toString())
             var rect = shape.getBoundingClientRect()
-            var shapeLeftPos = rect.left
-            var shapeTopPos = rect.top
+            let windowWidth = window.innerWidth
+            let windowHeight = window.innerHeight
+            var tracerXCoord = (rect.right - rect.left) + rect.left  // no rotations before this
+            var tracerYCoord = (rect.bottom - rect.top) + rect.top   // no rotations before this
+            let tracerSpeedFactor = 3
+            while (tracerXCoord > 0 && tracerXCoord < windowWidth    // while on-screen
+                && tracerYCoord > 0 && tracerYCoord < windowHeight) {   
+                    tracerXCoord += (xVector * tracerSpeedFactor)
+                    tracerYCoord += (yVector * tracerSpeedFactor)
+            }   // upon completion we have the tracer coords. updated to the "offscreen" point we will translate to
+            console.log(shape.className + "'s x-vec is " + xVector.toString())
+            console.log(shape.className + "'s y-vec is " + xVector.toString())
             shape.style.position = "absolute"
-            shape.style.left = "50%"
+            console.log("translate(" + tracerXCoord + "px, " + tracerYCoord + "px)")
+            shape.style.transform = "translate(" + tracerXCoord + "px, " + tracerYCoord + "px)" // random translation
             let rotationAngle = Math.random() * 360
-            shape.style.transform = "rotate(" + rotationAngle.toString() + "deg)"
+            //shape.style.transform = "rotate(" + rotationAngle.toString() + "deg)" // random rotation
             shape.style.opacity = 0
         }
     }
