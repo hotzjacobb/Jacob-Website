@@ -12,13 +12,14 @@ function copyEmail() {
     }, 10000) 
 }
 
-// called when the user clicks on the "project button"
-function onClickProjects() {
+// called when the user clicks on a button to clear all the other shapes away
+// this function when finished calls another function to animate the clicked shape
+function onClickProjects(btnClicked) {
     var shapeContainer = document.getElementById("shape-container")
     var shapes  = shapeContainer.children // Returns an HTMLCollection
     console.log(.3567446397 / .135674356)
     for (shape of shapes) {
-        if (shape.className !== "shape circle red") {
+        if (shape.className !== btnClicked.parentElement.className) {
             // shape.style.display = "none"
             // potentially set display to none here during transiton
             var xVector = Math.random() - .5
@@ -30,14 +31,14 @@ function onClickProjects() {
                 console.log("The ratio before rounding is" + ratio)
                 ratio = Math.round(ratio)
                 console.log("The ratio after rounding is" + ratio)
-                yVector = (yVector > 0) ? ratio : (-1 * ratio)
+                yVector = (yVector > 0) ? Math.abs(ratio) : (-1 * Math.abs(ratio))
                 xVector = (xVector > 0) ? 1 : -1
             } else {
                 var ratio = (xVector * 1.0 / yVector)
                 console.log("The ratio before rounding is" + ratio)
                 ratio = Math.round(ratio)
                 console.log("The ratio after rounding is" + ratio)
-                xVector = (xVector > 0) ? ratio : (-1 * ratio)
+                xVector = (xVector > 0) ? Math.abs(ratio) : (-1 * Math.abs(ratio))
                 yVector = (yVector > 0) ? 1 : -1
             }   // The smaller of xVector and yVector is now 1 and the larger keeps the same
                 // the same ratio; will be used for movement across pixels
@@ -46,8 +47,10 @@ function onClickProjects() {
             var rect = shape.getBoundingClientRect()
             let windowWidth = window.innerWidth
             let windowHeight = window.innerHeight
-            var tracerXCoord = (rect.right - rect.left) + rect.left  // no rotations before this
-            var tracerYCoord = (rect.bottom - rect.top) + rect.top   // no rotations before this
+            let startingPosX = (rect.right - rect.left) + rect.left
+            let startingPosY = (rect.bottom - rect.top) + rect.top
+            var tracerXCoord = startingPosX  // no rotations before this
+            var tracerYCoord = startingPosY   // no rotations before this
             let tracerSpeedFactor = 3
             while (tracerXCoord > 0 && tracerXCoord < windowWidth    // while on-screen
                 && tracerYCoord > 0 && tracerYCoord < windowHeight) {   
@@ -55,10 +58,12 @@ function onClickProjects() {
                     tracerYCoord += (yVector * tracerSpeedFactor)
             }   // upon completion we have the tracer coords. updated to the "offscreen" point we will translate to
             console.log(shape.className + "'s x-vec is " + xVector.toString())
-            console.log(shape.className + "'s y-vec is " + xVector.toString())
+            console.log(shape.className + "'s y-vec is " + yVector.toString())
             shape.style.position = "absolute"
-            console.log("translate(" + tracerXCoord + "px, " + tracerYCoord + "px)")
-            shape.style.transform = "translate(" + tracerXCoord + "px, " + tracerYCoord + "px)" // random translation
+            let translateVectorX = tracerXCoord - startingPosX
+            let translateVectorY = tracerYCoord - startingPosY
+            console.log("translate(" + translateVectorX + "px, " + translateVectorY + "px)")
+            shape.style.transform = "translate(" + translateVectorX + "px, " + translateVectorY + "px)" // random translation
             let rotationAngle = Math.random() * 360
             // TODO: figure out how to do two translations at a time
             //shape.style.transform = "rotate(" + rotationAngle.toString() + "deg)" // random rotation
