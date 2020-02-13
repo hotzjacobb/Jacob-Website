@@ -16,7 +16,7 @@ function copyEmail() {
 // this function when finished calls another function to animate the clicked shape
 function onClickDismissShapes(btnClicked) {
     toggleAlts()
-    deleteText()
+    deleteText(btnClicked.id)
     var shapeContainer = document.getElementById("shape-container")
     var shapes  = shapeContainer.children // Returns an HTMLCollection
     // TODO: Disable all buttons during animation
@@ -76,21 +76,23 @@ function onClickDismissShapes(btnClicked) {
 
 // helper function the performs the "animation" of deleting inner text from 
 // shape to be removed; also disables the buttons
-function deleteText() {
+function deleteText(clickedButtonId) {
     let shapeContainer = document.getElementById("shape-container")
     let buttons = shapeContainer.getElementsByTagName("BUTTON")
     for (button of buttons) {  // disable clicking on buttons now that animation in course
         button.disabled = true
     }
-    let finishedDeleting = false
-    var blankButtons = 0
-    while (blankButtons < buttons.length) {      // gradually delete all buttons text
+    // delete the text of the buttons
+    var blankButtons = 0                        // gradually delete all buttons text
+    while (blankButtons < buttons.length - 1) {  // once all buttons have been cleared stop
         blankButtons = 0             // reset as its calculated each loop through
         for (button of buttons) {    // do one letter of one button at a time
-            if (button.innerHTML.length > 0) {
-                button.innerHTML = button.innerHTML.substring(0, button.innerHTML.length - 1)
-            } else {
-                blankButtons++
+            if (button.id !== clickedButtonId) {  // don't delete the text of clicked button
+                if (button.innerHTML.length > 0) {
+                    button.innerHTML = button.innerHTML.substring(0, button.innerHTML.length - 1)
+                } else {
+                    blankButtons++
+                }
             }
         }
     }
