@@ -8,6 +8,8 @@
     <link href="https://fonts.googleapis.com/css?family=Poiret+One&display=swap" rel="stylesheet">
     <link rel="icon" href="./images/jh_png.png">
     <script src="jsfile.js"></script>
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> Currently not
+     using JQuery-->
 </head>
 <body>
 
@@ -17,19 +19,19 @@
 
     <div id="shape-container">
         <div class="shape circle red">
-            <button id="proj" onclick="onClickProjects(this)">Projects</button>
+            <button id="proj" onclick="onClickDismissShapes(this)">Projects</button>
         </div>
         <div class="shape triangle blanchedalmond">
             <button id="about">About me</button>
-            <button id="blog">Blog</button>
+            <button class="non-alt" id="blog">Blog</button>
         </div>
         <div class="shape parellelogram blue">
-            <button id="resume-alt">Résumé</button> <!--see css for explanation of "alt"-->
-            <button id="blog-alt">Blog</button>
+            <button class="alt" id="resume-alt">Résumé</button> <!--see css for explanation of "alt"-->
+            <button class="alt" id="blog-alt">Blog</button>
         </div>
         <div class="shape circle yellow">
             <button id="misc">Misc.</button>
-            <button id="resume">Résumé</button> 
+            <button class="non-alt" id="resume">Résumé</button> 
         </div>
     </div>
 

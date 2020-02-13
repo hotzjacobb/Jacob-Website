@@ -14,13 +14,13 @@ function copyEmail() {
 
 // called when the user clicks on a button to clear all the other shapes away
 // this function when finished calls another function to animate the clicked shape
-function onClickProjects(btnClicked) {
+function onClickDismissShapes(btnClicked) {
+    toggleAlts()
     var shapeContainer = document.getElementById("shape-container")
     var shapes  = shapeContainer.children // Returns an HTMLCollection
-    console.log(.3567446397 / .135674356)
+    // TODO: Disable all buttons during animation
     for (shape of shapes) {
         if (shape.className !== btnClicked.parentElement.className) {
-            // shape.style.display = "none"
             // potentially set display to none here during transiton
             var xVector = Math.random() - .5
             var yVector = Math.random() - .5
@@ -51,7 +51,7 @@ function onClickProjects(btnClicked) {
             let startingPosY = (rect.bottom - rect.top) + rect.top
             var tracerXCoord = startingPosX  // no rotations before this
             var tracerYCoord = startingPosY   // no rotations before this
-            let tracerSpeedFactor = 3
+            let tracerSpeedFactor = 3         // desired "precision"; the higher the value further off-screen but really not a big deal
             while (tracerXCoord > 0 && tracerXCoord < windowWidth    // while on-screen
                 && tracerYCoord > 0 && tracerYCoord < windowHeight) {   
                     tracerXCoord += (xVector * tracerSpeedFactor)
@@ -68,11 +68,33 @@ function onClickProjects(btnClicked) {
             // TODO: figure out how to do two translations at a time
             //shape.style.transform = "rotate(" + rotationAngle.toString() + "deg)" // random rotation
             shape.style.opacity = 0
+            // shape.style.display = "none"
         }
     }
 }
 
-// f
-function shapesExit() {
-
+// Helper function that makes the alt buttons visible for consistant animations
+// or restores the non-alts so that they can be clicked when not in an
+// animation.
+// For more info read the comment by the "alt" buttons in the CSS file.
+function toggleAlts() {
+    var alts = document.getElementsByClassName("alt")
+    var nonAlts = document.getElementsByClassName("non-alt")
+    if (window.getComputedStyle(alts[0]).getPropertyValue("visibility") === "hidden") {
+        console.log("hey")
+        for (element of nonAlts) {       // hide nonAlts
+            element.style.visibility = "hidden"
+        }
+        for (element of alts) {       // show alts
+            element.style.visibility = "visible"
+        }
+    } else {
+        console.log("hi")
+        for (element of alts) {       // hide alts
+            element.style.visibility = "hidden"
+        }
+        for (element of nonAlts) {       // show nonAlts
+            element.style.visibility = "visible"
+        }
+    }
 }
