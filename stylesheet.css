@@ -119,8 +119,8 @@ h2, button {
 #resume-alt {             /* explanation beside #resume */
     transform: skew(-30deg); 
     position: absolute;
-    top: 130px;
-    left: 138px;
+    top: 160px;
+    left: 130px;
     visibility: hidden;
 }
 
