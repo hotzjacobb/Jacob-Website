@@ -16,6 +16,7 @@ function copyEmail() {
 // this function when finished calls another function to animate the clicked shape
 function onClickDismissShapes(btnClicked) {
     toggleAlts()
+    deleteText()
     var shapeContainer = document.getElementById("shape-container")
     var shapes  = shapeContainer.children // Returns an HTMLCollection
     // TODO: Disable all buttons during animation
@@ -71,6 +72,36 @@ function onClickDismissShapes(btnClicked) {
             // shape.style.display = "none"
         }
     }
+}
+
+// helper function the performs the "animation" of deleting inner text from 
+// shape to be removed; also disables the buttons
+function deleteText() {
+    let shapeContainer = document.getElementById("shape-container")
+    let buttons = shapeContainer.getElementsByTagName("BUTTON")
+    for (button of buttons) {  // disable clicking on buttons now that animation in course
+        button.disabled = true
+    }
+    let finishedDeleting = false
+    var blankButtons = 0
+    while (blankButtons < buttons.length) {      // gradually delete all buttons text
+        blankButtons = 0             // reset as its calculated each loop through
+        for (button of buttons) {    // do one letter of one button at a time
+            if (button.innerHTML.length > 0) {
+                button.innerHTML = button.innerHTML.substring(0, button.innerHTML.length - 1)
+            } else {
+                blankButtons++
+            }
+        }
+    }
+}
+
+// Function called when the user clicks on the back button
+// restores the initial page state to how it was by changing the html and 
+// css attributes manually. If adding changes to the initial page be sure to
+// make any corresponding changes here.
+function restoreInitialPage() {
+
 }
 
 // Helper function that makes the alt buttons visible for consistant animations
