@@ -1,15 +1,15 @@
 // Created by Jacob Hotz 17 Dec. 2019
 
 // makes the email icon disappear (replaced by text) and then reappear
-function copyEmail() {   
+function copyEmail() {
     let emailImg = document.getElementById("emailImg")
     let emailText = document.getElementById("address")
     emailImg.style.display = "none"
     emailText.style.display = "inline-block"   // display my email in text
-    setTimeout(function() {            // after ten seconds go back to email icon
+    setTimeout(function () {            // after ten seconds go back to email icon
         emailText.style.display = "none"
         emailImg.style.display = "block"
-    }, 10000) 
+    }, 10000)
 }
 
 // called when the user clicks on a button to clear all the other shapes away
@@ -18,7 +18,7 @@ function onClickDismissShapes(btnClicked) {
     toggleAlts()
     deleteText(btnClicked.id)
     var shapeContainer = document.getElementById("shape-container")
-    var shapes  = shapeContainer.children // Returns an HTMLCollection
+    var shapes = shapeContainer.children // Returns an HTMLCollection
     // TODO: Disable all buttons during animation
     for (shape of shapes) {
         if (shape.className !== btnClicked.parentElement.className) {
@@ -42,7 +42,7 @@ function onClickDismissShapes(btnClicked) {
                 xVector = (xVector > 0) ? Math.abs(ratio) : (-1 * Math.abs(ratio))
                 yVector = (yVector > 0) ? 1 : -1
             }   // The smaller of xVector and yVector is now 1 and the larger keeps the same
-                // the same ratio; will be used for movement across pixels
+            // the same ratio; will be used for movement across pixels
             console.log(shape.className + "'s x-vec NOW is " + xVector.toString())
             console.log(shape.className + "'s y-vec NOW is " + yVector.toString())
             var rect = shape.getBoundingClientRect()
@@ -54,9 +54,9 @@ function onClickDismissShapes(btnClicked) {
             var tracerYCoord = startingPosY   // no rotations before this
             let tracerSpeedFactor = 3         // desired "precision"; the higher the value further off-screen but really not a big deal
             while (tracerXCoord > 0 && tracerXCoord < windowWidth    // while on-screen
-                && tracerYCoord > 0 && tracerYCoord < windowHeight) {   
-                    tracerXCoord += (xVector * tracerSpeedFactor)
-                    tracerYCoord += (yVector * tracerSpeedFactor)
+                && tracerYCoord > 0 && tracerYCoord < windowHeight) {
+                tracerXCoord += (xVector * tracerSpeedFactor)
+                tracerYCoord += (yVector * tracerSpeedFactor)
             }   // upon completion we have the tracer coords. updated to the "offscreen" point we will translate to
             console.log(shape.className + "'s x-vec is " + xVector.toString())
             console.log(shape.className + "'s y-vec is " + yVector.toString())
@@ -66,8 +66,8 @@ function onClickDismissShapes(btnClicked) {
             console.log("translate(" + translateVectorX + "px, " + translateVectorY + "px)")
             shape.style.transform = "translate(" + translateVectorX + "px, " + translateVectorY + "px)" // random translation
             let rotationAngle = Math.random() * 360
-            // TODO: figure out how to do two translations at a time
-            //shape.style.transform = "rotate(" + rotationAngle.toString() + "deg)" // random rotation
+            // += on the line below to keep effects of previous transform
+            shape.style.transform += "rotate(" + rotationAngle.toString() + "deg)" // random rotation
             shape.style.opacity = 0
             // shape.style.display = "none"
         }
@@ -83,20 +83,14 @@ function deleteText(clickedButtonId) {
         button.disabled = true
     }
     // delete the text of the buttons
-    var blankButtons = 0                        // gradually delete all buttons text
-    while (blankButtons < buttons.length - 1) {  // once all buttons have been cleared stop
-        blankButtons = 0             // reset as its calculated each loop through
-        for (button of buttons) {    // do one letter of one button at a time
-            if (button.id !== clickedButtonId) {  // don't delete the text of clicked button
-                if (button.innerHTML.length > 0) {
-                    button.innerHTML = button.innerHTML.substring(0, button.innerHTML.length - 1)
-                } else {
-                    blankButtons++
-                }
-            }
+    for (button of buttons) {    // do one letter of one button at a time
+        if (button.id !== clickedButtonId) {  // don't delete the text of clicked button
+            button.innerHTML = ""
         }
     }
 }
+
+
 
 // Function called when the user clicks on the back button
 // restores the initial page state to how it was by changing the html and 
@@ -106,7 +100,7 @@ function restoreInitialPage() {
 
 }
 
-// Helper function that makes the alt buttons visible for consistant animations
+// Helper function that makes the alt buttons visible for css animations
 // or restores the non-alts so that they can be clicked when not in an
 // animation.
 // For more info read the comment by the "alt" buttons in the CSS file.
