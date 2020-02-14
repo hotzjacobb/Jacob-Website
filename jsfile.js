@@ -72,6 +72,7 @@ function onClickDismissShapes(btnClicked) {
             // shape.style.display = "none"
         }
     }
+    btnClicked.parentElement.classList.add("textclicked")
 }
 
 // helper function the performs the "animation" of deleting inner text from 

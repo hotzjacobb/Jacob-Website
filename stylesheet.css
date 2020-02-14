@@ -55,6 +55,7 @@ header {
     transform: skew(-30deg);
 }
 
+
 .parellelogram {
     height: 295px;
     width: 250px;
@@ -64,6 +65,28 @@ header {
 .red {
     background-color: rgba(231, 34, 41, .88);
     left: -300px;
+    /* translation specs. for when the shape moves to the centre */
+    -webkit-transition-property: left, -webkit-transform;
+    -webkit-transition-duration: 3.0s;
+    -webkit-transition-delay: 0.2s;
+    -webkit-transition-timing-function: ease-in-out;
+    -moz-transition-property: left, -webkit-transform;
+    -moz-transition-duration: 3.0s;
+    -moz-transition-delay: 0.2s;
+    -moz-transition-timing-function: ease-in-out;
+    -ms-transformtransition-property: left, -webkit-transform;
+    -ms-transformtransition-duration: 3.0s;
+    -ms-transformtransition-delay: 0.2s;
+    -ms-transformtransition-timing-function: ease-in-out;
+    transition-property: left, transform;
+    transition-duration: 3.0s;
+    transition-delay: 0.2s;
+    transition-timing-function: ease-in-out;
+}
+
+.red.textclicked {
+    left: 50%;
+    transform: rotate(407deg);  /* value based on rotation in #proj */
 }
 
 .blanchedalmond {
@@ -72,14 +95,26 @@ header {
     z-index: 4;
 }
 
+.blanchedalmond.textclicked {
+
+}
+
 .blue {
     background-color: rgba(61, 93, 170, .7);
     left: 100px;
 }
 
+.blue.textclicked {
+
+}
+
 .yellow {
     background-color: rgba(251, 193, 24, .8);
     left: 300px;
+}
+
+.yellow.textclicked {
+
 }
 
 h2, button {
