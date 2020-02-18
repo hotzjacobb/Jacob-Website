@@ -85,9 +85,11 @@ header {
 }
 
 .red.textclicked {
-    /* left: 50%;
-    /* margin: 0 auto; */
-    position: relative;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
     transform: rotate(407deg);  /* value based on rotation in #proj */
 }
 
