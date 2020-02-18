@@ -66,21 +66,21 @@ header {
     background-color: rgba(231, 34, 41, .88);
     left: -300px;
     /* translation specs. for when the shape moves to the centre */
-    -webkit-transition-property: left, -webkit-transform;
-    -webkit-transition-duration: 3.0s;
-    -webkit-transition-delay: 0.2s;
+    -webkit-transition-property: left, -webkit-transform, border-radius;
+    -webkit-transition-duration: 3.0s, 3.0s, 1.0s;
+    -webkit-transition-delay: 0.2s, 0.2s, 3.3s;
     -webkit-transition-timing-function: ease-in-out;
-    -moz-transition-property: left, -webkit-transform;
-    -moz-transition-duration: 3.0s;
-    -moz-transition-delay: 0.2s;
+    -moz-transition-property: left, -webkit-transform, border-radius;
+    -moz-transition-duration: 3.0, 3.0s, 1.0s;
+    -moz-transition-delay: 0.2s, 0.2s, 3.3s;
     -moz-transition-timing-function: ease-in-out;
-    -ms-transformtransition-property: left, -webkit-transform;
-    -ms-transformtransition-duration: 3.0s;
-    -ms-transformtransition-delay: 0.2s;
+    -ms-transformtransition-property: left, -webkit-transform, border-radius;
+    -ms-transformtransition-duration: 3.0s, 3.0s, 1.0s;
+    -ms-transformtransition-delay: 0.2s, 0.2s, 3.3s;
     -ms-transformtransition-timing-function: ease-in-out;
-    transition-property: left, transform;
-    transition-duration: 3.0s;
-    transition-delay: 0.2s;
+    transition-property: left, transform, border-radius;
+    transition-duration: 3.0s, 3.0s, 1.0s;
+    transition-delay: 0.2s, 0.2s, 3.3s;
     transition-timing-function: ease-in-out;
 }
 
@@ -90,7 +90,8 @@ header {
     right: 0;
     bottom: 0;
     margin: auto;
-    transform: rotate(407deg);  /* value based on rotation in #proj */
+    transform: rotate(360deg);  /* value based on rotation in #proj */
+    border-radius: 0%;    
 }
 
 .blanchedalmond {
@@ -231,7 +232,7 @@ img, input, #address {
     transform: translate(-80px, -27px);
 }
 
-p {
+a {
     font-family: 'Poiret One';
     /* color: rgba(251, 193, 24, .8); */
     color: black;

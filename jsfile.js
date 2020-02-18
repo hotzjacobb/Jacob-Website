@@ -78,7 +78,7 @@ function onClickDismissShapes(btnClicked) {
 }
 
 // helper function the performs the "animation" of deleting inner text from 
-// shape to be removed; also disables the buttons
+// shapes to be removed; also disables the buttons
 function deleteText(clickedButtonId) {
     let shapeContainer = document.getElementById("shape-container")
     let buttons = shapeContainer.getElementsByTagName("BUTTON")
