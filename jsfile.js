@@ -1,7 +1,9 @@
 // Created by Jacob Hotz 17 Dec. 2019
 
+
 // makes the email icon disappear (replaced by text) and then reappear
 function copyEmail() {
+    correctEmail()
     let emailImg = document.getElementById("emailImg")
     let emailText = document.getElementById("address")
     emailImg.style.display = "none"
@@ -72,7 +74,7 @@ function onClickDismissShapes(btnClicked) {
             // shape.style.display = "none"
         }
     }
-    btnClicked.parentElement.classList.add("textclicked")
+    btnClicked.parentElement.classList.add("textclicked")  // move clicked shape into position
 }
 
 // helper function the performs the "animation" of deleting inner text from 
@@ -124,5 +126,16 @@ function toggleAlts() {
         for (element of nonAlts) {       // show nonAlts
             element.style.visibility = "visible"
         }
+    }
+}
+
+// the email in the html is missing a few letter
+// so as to not be registered by scrapers
+function correctEmail() {
+    var address = document.getElementById("address")
+    if (address.innerHTML.substring(0, 5) !== "hotzj") {
+    console.log("cool")
+    address.innerHTML = address.innerHTML.substring(0, 2) + "tzj" 
+    + address.innerHTML.substring(2, 6) + "b" + address.innerHTML.substring(6)
     }
 }

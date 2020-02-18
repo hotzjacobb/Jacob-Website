@@ -85,7 +85,9 @@ header {
 }
 
 .red.textclicked {
-    left: 50%;
+    /* left: 50%;
+    /* margin: 0 auto; */
+    position: relative;
     transform: rotate(407deg);  /* value based on rotation in #proj */
 }
 
@@ -229,7 +231,8 @@ img, input, #address {
 
 p {
     font-family: 'Poiret One';
-    color: rgba(251, 193, 24, .8);
+    /* color: rgba(251, 193, 24, .8); */
+    color: black;
     font-size: x-large;
     font-weight: 900;
 }
