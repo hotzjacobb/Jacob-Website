@@ -1,4 +1,5 @@
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,43 +12,47 @@
     <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> Currently not
      using JQuery-->
 </head>
+
 <body>
+    <div id="page-wrap">
+        <header id="header">
+            <div id="name-container">
+                Jacob Hotz
+            </div>
+        </header>
 
-    <header><div id="name-container">
-        Jacob Hotz
-    </div></header>
+        <div id="shape-container">
+            <div class="shape circle red">
+                <button id="proj" onclick="onClickDismissShapes(this)">Projects</button>
+            </div>
+            <div class="shape triangle blanchedalmond">
+                <button id="about">About me</button>
+                <button class="non-alt" id="blog">Blog</button>
+            </div>
+            <div class="shape parellelogram blue">
+                <button class="alt" id="resume-alt">Résumé</button>
+                <!--see css for explanation of "alt"-->
+                <button class="alt" id="blog-alt">Blog</button>
+            </div>
+            <div class="shape circle yellow">
+                <button id="misc">Misc.</button>
+                <button class="non-alt" id="resume">Résumé</button>
+            </div>
+        </div>
 
-    <div id="shape-container">
-        <div class="shape circle red">
-            <button id="proj" onclick="onClickDismissShapes(this)">Projects</button>
-        </div>
-        <div class="shape triangle blanchedalmond">
-            <button id="about">About me</button>
-            <button class="non-alt" id="blog">Blog</button>
-        </div>
-        <div class="shape parellelogram blue">
-            <button class="alt" id="resume-alt">Résumé</button> <!--see css for explanation of "alt"-->
-            <button class="alt" id="blog-alt">Blog</button>
-        </div>
-        <div class="shape circle yellow">
-            <button id="misc">Misc.</button>
-            <button class="non-alt" id="resume">Résumé</button> 
-        </div>
+        <footer id="footer">
+            <div class="icon" id="email">
+                <input id="emailImg" type="image" src="./images/email_image_1.png" alt="email" onclick="copyEmail()">
+                <a id="address">hoacob@gmail.com</a>
+            </div>
+            <div class="icon" id="github"><a href="https://github.com/hotzjacobb">
+                    <img src="./images/github_image.png" alt="github">
+                </a></div>
+            <div class="icon" id="linkedin"><a href="https://www.linkedin.com/in/jacob-hotz-93ba03198/">
+                    <img src="./images/linkedin_image_1.png" alt="linkedin">
+                </a></div>
+        </footer>
     </div>
-
-    <footer>
-        <div class="icon" id="email">       
-            <input id="emailImg" type="image" src="./images/email_image_1.png" alt="email" onclick="copyEmail()">
-            <a id="address">hoacob@gmail.com</a>
-        </div>
-        <div class="icon" id="github"><a href="https://github.com/hotzjacobb">
-            <img src="./images/github_image.png" alt="github">
-        </a></div>
-        <div class="icon" id="linkedin"><a href="https://www.linkedin.com/in/jacob-hotz-93ba03198/">
-            <img src="./images/linkedin_image_1.png" alt="linkedin">
-        </a></div>
-    </footer>
-
 </body>
-</html>
 
+</html>

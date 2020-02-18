@@ -1,9 +1,14 @@
 
 body {
     background-color: #DBDCDE;
-    /*overflow: hidden;*/
+    overflow: hidden;
     /*white-space: nowrap;*/
     max-height: 100%;
+}
+
+#page-wrap {
+    position: relative;
+    overflow: hidden;
 }
 
 /*  My name */
@@ -67,20 +72,20 @@ header {
     left: -300px;
     /* translation specs. for when the shape moves to the centre */
     -webkit-transition-property: left, -webkit-transform, border-radius;
-    -webkit-transition-duration: 3.0s, 3.0s, 1.0s;
-    -webkit-transition-delay: 0.2s, 0.2s, 3.3s;
+    -webkit-transition-duration: 3.0s, 3.0s;
+    -webkit-transition-delay: 0.2s, 0.2s;
     -webkit-transition-timing-function: ease-in-out;
     -moz-transition-property: left, -webkit-transform, border-radius;
-    -moz-transition-duration: 3.0, 3.0s, 1.0s;
-    -moz-transition-delay: 0.2s, 0.2s, 3.3s;
+    -moz-transition-duration: 3.0, 3.0s;
+    -moz-transition-delay: 0.2s, 0.2s;
     -moz-transition-timing-function: ease-in-out;
     -ms-transformtransition-property: left, -webkit-transform, border-radius;
-    -ms-transformtransition-duration: 3.0s, 3.0s, 1.0s;
-    -ms-transformtransition-delay: 0.2s, 0.2s, 3.3s;
+    -ms-transformtransition-duration: 3.0s, 3.0s;
+    -ms-transformtransition-delay: 0.2s, 0.2s;
     -ms-transformtransition-timing-function: ease-in-out;
     transition-property: left, transform, border-radius;
-    transition-duration: 3.0s, 3.0s, 1.0s;
-    transition-delay: 0.2s, 0.2s, 3.3s;
+    transition-duration: 3.0s, 3.0s;
+    transition-delay: 0.2s, 0.2s;
     transition-timing-function: ease-in-out;
 }
 
@@ -91,7 +96,26 @@ header {
     bottom: 0;
     margin: auto;
     transform: rotate(360deg);  /* value based on rotation in #proj */
-    border-radius: 0%;    
+}
+
+.red.centred {
+    -webkit-transition-property: border-radius;
+    -webkit-transition-duration: 1.0s;
+    -webkit-transition-delay: 0.0s;
+    -webkit-transition-timing-function: ease-in-out;
+    -moz-transition-property: border-radius;
+    -moz-transition-duration: 1.0s;
+    -moz-transition-delay: 0.0s;
+    -moz-transition-timing-function: ease-in-out;
+    -ms-transformtransition-property: border-radius;
+    -ms-transformtransition-duration: 1.0s;
+    -ms-transformtransition-delay: 0.0s;
+    -ms-transformtransition-timing-function: ease-in-out;
+    transition-property: border-radius;
+    transition-duration: 1.0s;
+    transition-delay: 0.0s;
+    transition-timing-function: ease-in-out;
+    border-radius: 0%;
 }
 
 .blanchedalmond {
@@ -255,4 +279,8 @@ a {
     opacity: .8;
 }
 
-/* shape animations */
+#module {
+    height: 100%;
+    width: 80%;
+    background-color: rgba(231, 34, 41, .88);
+}

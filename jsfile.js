@@ -74,7 +74,28 @@ function onClickDismissShapes(btnClicked) {
             // shape.style.display = "none"
         }
     }
+    // btnClicked.parentElement.addEventListener("webkitTransitionEnd transitionend", transitionToModule)
+    // once translation ends remove the shape's button text and hide other page elements
+    // and then add class to do transition to submodule
+    btnClicked.parentElement.addEventListener('transitionend', function() {
+        transitionToModule(this, btnClicked)
+    }, {once : true})
     btnClicked.parentElement.classList.add("textclicked")  // move clicked shape into position
+}
+
+// called after the shape has been centred. Removes the shape's
+// label as well as hiding other elements on the page and expanding
+// the shape to take up most of the screen and display the 
+// submodule's information
+function transitionToModule(shape, btn) {
+   btn.innerHTML = ""
+   // don't display other page elements
+   document.getElementById("footer").style.display = "none"
+   document.getElementById("header").style.display = "none"
+   // expand area of reading zone; shape container becomes the module reading 
+   var module = document.createElement("DIV")
+   module.id = "module"
+   document.getElementById("page-wrap").appendChild(module);
 }
 
 // helper function the performs the "animation" of deleting inner text from 
