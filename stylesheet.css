@@ -99,23 +99,24 @@ header {
 }
 
 .red.centred {
-    -webkit-transition-property: border-radius;
-    -webkit-transition-duration: 1.0s;
-    -webkit-transition-delay: 0.0s;
-    -webkit-transition-timing-function: ease-in-out;
-    -moz-transition-property: border-radius;
-    -moz-transition-duration: 1.0s;
-    -moz-transition-delay: 0.0s;
-    -moz-transition-timing-function: ease-in-out;
-    -ms-transformtransition-property: border-radius;
-    -ms-transformtransition-duration: 1.0s;
-    -ms-transformtransition-delay: 0.0s;
-    -ms-transformtransition-timing-function: ease-in-out;
-    transition-property: border-radius;
-    transition-duration: 1.0s;
-    transition-delay: 0.0s;
-    transition-timing-function: ease-in-out;
+    -webkit-transition-property: border-radius, -webkit-transform;
+    -webkit-transition-duration: 1.0s, 1.0s;
+    -webkit-transition-delay: 0.0s, 0.0s;
+    -webkit-transition-timing-function: ease-out;
+    -moz-transition-property: border-radius, -webkit-transform;
+    -moz-transition-duration: 1.0s , 1.0s;
+    -moz-transition-delay: 0.0s, 0.0s;
+    -moz-transition-timing-function: ease-out;
+    -ms-transformtransition-property: border-radius, -webkit-transform;
+    -ms-transformtransition-duration: 1.0s, 1.0s;
+    -ms-transformtransition-delay: 0.0s, 0.0s;
+    -ms-transformtransition-timing-function: ease-out;
+    transition-property: border-radius, transform;
+    transition-duration: 1.0s, 1.0s;
+    transition-delay: 0.0s, 0.0s;
+    transition-timing-function: ease-out;
     border-radius: 0%;
+    transform: rotate(-47deg) scale(0.0);
 }
 
 .blanchedalmond {
