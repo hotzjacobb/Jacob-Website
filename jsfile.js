@@ -90,12 +90,21 @@ function onClickDismissShapes(btnClicked) {
 function transitionToModule(shape, btn) {
    btn.innerHTML = ""
    // don't display other page elements
+   let boundingRect = shape.getBoundingClientRect()
+   console.log(boundingRect.left)
+   console.log(boundingRect.top)
    document.getElementById("footer").style.display = "none"
    document.getElementById("header").style.display = "none"
+   boundingRect = shape.getBoundingClientRect()
+   console.log(boundingRect.left)
+   console.log(boundingRect.top)
    // expand area of reading zone; shape container becomes the module reading 
    var module = document.createElement("DIV")
    module.id = "module"
-   document.getElementById("page-wrap").appendChild(module);
+   shape.classList.add("centred")
+   //document.getElementById("page-wrap").appendChild(module);
+   // shrin circle; display none; and then from the same place grow div that taes 
+   // the page 80% width and full height; bac
 }
 
 // helper function the performs the "animation" of deleting inner text from 

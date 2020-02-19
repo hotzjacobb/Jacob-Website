@@ -95,7 +95,7 @@ header {
     right: 0;
     bottom: 0;
     margin: auto;
-    transform: rotate(360deg);  /* value based on rotation in #proj */
+    transform: rotate(407deg);  /* value based on rotation in #proj */
 }
 
 .red.centred {
