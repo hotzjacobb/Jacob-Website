@@ -88,7 +88,7 @@ function onClickDismissShapes(btnClicked) {
 // has the unfortunate side effect of the target not listening to 
 // events added later even with a different listener 
 function textClickedFinishedHelper(event, shape, btnClicked) {
-    console.log(event.propertyName)
+    //console.log(event.propertyName)
     shape.removeEventListener('transitionend', textClickedFinishedHelper)
     textClickedFinished(shape, btnClicked)
 }
@@ -110,12 +110,9 @@ function textClickedFinished(shape, btnClicked) {
 
 // Helper function to make sure that centredFinished() doesn't
 // fire before it should
-function centredFinishedHelper
-(event, shape) {
+function centredFinishedHelper(event, shape) {
     console.log(event.propertyName)
-    if (event.propertyName === "border-bottom-left-radius") {  // necessary check because otherwise
-        // TODO: Change condition; as of now this must be noticed by programmer when changing css
-        // and for that's bad because they will not notice; fix
+    if (event.propertyName === "border-top-right-radius") {  // necessary check because otherwise
         console.log("DGFHDFGHFDGHDFGHDFGHHDHDFGH")
         shape.removeEventListener('transitionend', centredFinishedHelper)
         centredFinished(shape)                       // it will trigger on the prev. css. anim.
@@ -202,3 +199,4 @@ function correctEmail() {
     + address.innerHTML.substring(2, 6) + "b" + address.innerHTML.substring(6)
     }
 }
+
