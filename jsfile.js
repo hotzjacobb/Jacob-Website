@@ -77,53 +77,37 @@ function onClickDismissShapes(btnClicked) {
     // once translation ends remove the shape's button text and hide other page elements
     // and then add class to do transition to submodule
     console.log(btnClicked)
-    btnClicked.parentElement.addEventListener('transitionend', function(event) {
-        textClickedFinishedHelper(event, btnClicked.parentElement, btnClicked)
-    })
+    btnClicked.parentElement.addEventListener('transitionend', function() {
+        console.log("lambda called")
+        textClickedFinished(btnClicked.parentElement, btnClicked)
+    }, {once : true})
     btnClicked.parentElement.classList.add("textclicked")  // move clicked shape into position
 }
-
-// Called to add event listener, have to do it like this as it seems
-// that using the "once" optional parameter of addEventListener()
-// has the unfortunate side effect of the target not listening to 
-// events added later even with a different listener 
-function textClickedFinishedHelper(event, shape, btnClicked) {
-    //console.log(event.propertyName)
-    shape.removeEventListener('transitionend', textClickedFinishedHelper)
-    textClickedFinished(shape, btnClicked)
-}
-
 
 // Called after the shape has been centred. Animates
 // the shape's removal as well as clearing the page
 // of other elements to prepare before creating the new module
 function textClickedFinished(shape, btnClicked) {
+    console.log("textClickedFinished called")
    btnClicked.innerHTML = ""
    document.getElementById("footer").style.display = "none" // don't display other page elements
    document.getElementById("header").style.display = "none"
    // next callback for animation
    shape.addEventListener('transitionend', function(event) {
-       centredFinishedHelper(event, shape)
+       centredFinished(event, shape)
    })
    shape.classList.add("centred")
 }
 
-// Helper function to make sure that centredFinished() doesn't
-// fire before it should
-function centredFinishedHelper(event, shape) {
-    console.log(event.propertyName)
-    if (event.propertyName === "border-top-right-radius") {  // necessary check because otherwise
-        console.log("DGFHDFGHFDGHDFGHDFGHHDHDFGH")
-        shape.removeEventListener('transitionend', centredFinishedHelper)
-        centredFinished(shape)                       // it will trigger on the prev. css. anim.
-    }
-}
-
-
 // This function first hides that last shape and its container
 // and then creates the new div that is the module.
-function centredFinished(shapeToHide) {
-    console.log("called")
+function centredFinished(event, shapeToHide) {
+    console.log(event.propertyName)
+    if (event.propertyName !== "border-bottom-left-radius") {return} // guard against earlier animation triggering it
+    // css animations + vanilla js is not particulary dev. friendly
+    // TODO: Need to find a better guard because this does not apply to all shapes
+    console.log("centredFinished called")
+    console.log(event)
     var module = document.createElement("DIV")
     module.id = "module"
     var colour = window.getComputedStyle(shapeToHide).getPropertyValue("background-color")
@@ -131,7 +115,7 @@ function centredFinished(shapeToHide) {
     // shapeToHide.style.display = "none"
     var shapeContainer = document.getElementById("shape-container")
     shapeContainer.style.display = "none"
-    //document.body.appendChild(module)
+    document.body.appendChild(module)
     module.classList.add("expand")
 }
 
