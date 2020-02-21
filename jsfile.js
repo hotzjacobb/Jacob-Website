@@ -74,38 +74,70 @@ function onClickDismissShapes(btnClicked) {
             // shape.style.display = "none"
         }
     }
-    // btnClicked.parentElement.addEventListener("webkitTransitionEnd transitionend", transitionToModule)
     // once translation ends remove the shape's button text and hide other page elements
     // and then add class to do transition to submodule
-    btnClicked.parentElement.addEventListener('transitionend', function() {
-        transitionToModule(this, btnClicked)
-    }, {once : true})
+    console.log(btnClicked)
+    btnClicked.parentElement.addEventListener('transitionend', function(event) {
+        textClickedFinishedHelper(event, btnClicked.parentElement, btnClicked)
+    })
     btnClicked.parentElement.classList.add("textclicked")  // move clicked shape into position
 }
 
-// called after the shape has been centred. Removes the shape's
-// label as well as hiding other elements on the page and expanding
-// the shape to take up most of the screen and display the 
-// submodule's information
-function transitionToModule(shape, btn) {
-   btn.innerHTML = ""
-   // don't display other page elements
-   let boundingRect = shape.getBoundingClientRect()
-   console.log(boundingRect.left)
-   console.log(boundingRect.top)
-   document.getElementById("footer").style.display = "none"
-   document.getElementById("header").style.display = "none"
-   boundingRect = shape.getBoundingClientRect()
-   console.log(boundingRect.left)
-   console.log(boundingRect.top)
-   // expand area of reading zone; shape container becomes the module reading 
-   var module = document.createElement("DIV")
-   module.id = "module"
-   shape.classList.add("centred")
-   //document.getElementById("page-wrap").appendChild(module);
-   // shrin circle; display none; and then from the same place grow div that taes 
-   // the page 80% width and full height; bac
+// Called to add event listener, have to do it like this as it seems
+// that using the "once" optional parameter of addEventListener()
+// has the unfortunate side effect of the target not listening to 
+// events added later even with a different listener 
+function textClickedFinishedHelper(event, shape, btnClicked) {
+    console.log(event)
+    shape.removeEventListener('transitionend', textClickedFinishedHelper)
+    textClickedFinished(shape, btnClicked)
 }
+
+
+// Called after the shape has been centred. Animates
+// the shape's removal as well as clearing the page
+// of other elements to prepare before creating the new module
+function textClickedFinished(shape, btnClicked) {
+   btnClicked.innerHTML = ""
+   document.getElementById("footer").style.display = "none" // don't display other page elements
+   document.getElementById("header").style.display = "none"
+   // next callback for animation
+   shape.addEventListener('transitionend', function(event) {
+       centredFinishedHelper(event, shape)
+   })
+   shape.classList.add("centred")
+}
+
+// Helper function to make sure that centredFinished() doesn't
+// fire before it should
+function centredFinishedHelper
+(event, shape) {
+    console.log(event)
+    if (event.elaspedTime === 1) {  // necessary check because otherwise
+        // TODO: Change condition; as of now this must be noticed by programmer when changing css
+        // and for that's bad because they will not notice; fix
+        shape.removeEventListener('transitionend', centredFinishedHelper)
+        centredFinished(shape)                       // it will trigger on the prev. css. anim.
+    }
+}
+
+
+// This function first hides that last shape and its container
+// and then creates the new div that is the module.
+function centredFinished(shapeToHide) {
+    console.log("called")
+    var module = document.createElement("DIV")
+    module.id = "module"
+    var colour = window.getComputedStyle(shapeToHide).getPropertyValue("background-color")
+    module.style.backgroundColor = colour   // module has the same colour as button's parent (shape)
+    // shapeToHide.style.display = "none"
+    var shapeContainer = document.getElementById("shape-container")
+    shapeContainer.style.display = "none"
+    //document.body.appendChild(module)
+    module.classList.add("expand")
+}
+
+
 
 // helper function the performs the "animation" of deleting inner text from 
 // shapes to be removed; also disables the buttons

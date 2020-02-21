@@ -6,10 +6,6 @@ body {
     max-height: 100%;
 }
 
-#page-wrap {
-    position: relative;
-    overflow: hidden;
-}
 
 /*  My name */
 header {
