@@ -78,9 +78,8 @@ function onClickDismissShapes(btnClicked) {
     // and then add class to do transition to submodule
     console.log(btnClicked)
     btnClicked.parentElement.addEventListener('transitionend', function() {
-        console.log("lambda called")
         textClickedFinished(btnClicked.parentElement, btnClicked)
-    }, {once : true})
+    }, {once : true})  // when this is not a lambda the click mouse-event fires textClickedFinished
     btnClicked.parentElement.classList.add("textclicked")  // move clicked shape into position
 }
 
@@ -116,6 +115,7 @@ function centredFinished(event, shapeToHide) {
     var shapeContainer = document.getElementById("shape-container")
     shapeContainer.style.display = "none"
     document.body.appendChild(module)
+    window.getComputedStyle(module).top; // this line forces a redraw; otherwise no anim.
     module.classList.add("expand")
 }
 

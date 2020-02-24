@@ -3,7 +3,9 @@ body {
     background-color: #DBDCDE;
     overflow: hidden;
     /*white-space: nowrap;*/
-    max-height: 100%;
+    /*max-height: 100%;*/
+    /* padding: 0px; */
+    /* margin: 0px; */
 }
 
 
@@ -277,7 +279,42 @@ a {
 }
 
 #module {
-    height: 100%;
-    width: 80%;
-    background-color: rgba(231, 34, 41, .88);
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 0px;
+    width: 0px;
+    margin: auto;
+}
+
+#module.expand {
+    height: 90%;
+    margin-top: 5%;
+    margin-bottom: 0px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    border-width: 0px;
+    padding: 0px;
+    width: 70%;
+    margin-left: 15%;
+    /*background-color: rgba(231, 34, 41, .88);*/
+    transform: rotate(360deg);
+    /* translation specs. for when the shape expands to module */
+    -webkit-transition-property: height, width, -webkit-transform;
+    -webkit-transition-duration: 1.0s, 1.0s, 1.0s;
+    -webkit-transition-delay: 0.0s, 0.0s, 0.0s;
+    -webkit-transition-timing-function: ease-in-out;
+    -moz-transition-property: height, width, -webkit-transform;
+    -moz-transition-duration: 1.0s, 1.0s, 1.0s;
+    -moz-transition-delay: 0.0s, 0.0s, 0.0s;
+    -moz-transition-timing-function: ease-in-out;
+    -ms-transformtransition-property: height, width, -webkit-transform;
+    -ms-transformtransition-duration: 1.0s, 1.0s, 1.0s;
+    -ms-transformtransition-delay: 0.0s, 0.0s, 0.0s;
+    -ms-transformtransition-timing-function: ease-in-out;
+    transition-property: height, width, transform;
+    transition-duration: 1.0s, 1.0s, 1.0s;
+    transition-delay: 0.0s, 0.0s, 0.0s;
+    transition-timing-function: ease-in-out;
 }
