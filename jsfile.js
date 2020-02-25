@@ -27,45 +27,34 @@ function onClickDismissShapes(btnClicked) {
             // potentially set display to none here during transiton
             var xVector = Math.random() - .5
             var yVector = Math.random() - .5
-            console.log(shape.className + "'s x-vec is " + xVector.toString())
-            console.log(shape.className + "'s y-vec is " + yVector.toString())
             if (Math.abs(yVector) > Math.abs(xVector)) {   // get movement for one frame
                 var ratio = (yVector * 1.0 / xVector)
-                console.log("The ratio before rounding is" + ratio)
                 ratio = Math.round(ratio)
-                console.log("The ratio after rounding is" + ratio)
                 yVector = (yVector > 0) ? Math.abs(ratio) : (-1 * Math.abs(ratio))
                 xVector = (xVector > 0) ? 1 : -1
             } else {
                 var ratio = (xVector * 1.0 / yVector)
-                console.log("The ratio before rounding is" + ratio)
                 ratio = Math.round(ratio)
-                console.log("The ratio after rounding is" + ratio)
                 xVector = (xVector > 0) ? Math.abs(ratio) : (-1 * Math.abs(ratio))
                 yVector = (yVector > 0) ? 1 : -1
             }   // The smaller of xVector and yVector is now 1 and the larger keeps the same
             // the same ratio; will be used for movement across pixels
-            console.log(shape.className + "'s x-vec NOW is " + xVector.toString())
-            console.log(shape.className + "'s y-vec NOW is " + yVector.toString())
             var rect = shape.getBoundingClientRect()
             let windowWidth = window.innerWidth
             let windowHeight = window.innerHeight
             let startingPosX = (rect.right - rect.left) + rect.left
             let startingPosY = (rect.bottom - rect.top) + rect.top
+            console.log(startingPosY)
             var tracerXCoord = startingPosX  // no rotations before this
             var tracerYCoord = startingPosY   // no rotations before this
-            let tracerSpeedFactor = 3         // desired "precision"; the higher the value further off-screen but really not a big deal
-            while (tracerXCoord > 0 && tracerXCoord < windowWidth    // while on-screen
-                && tracerYCoord > 0 && tracerYCoord < windowHeight) {
+            let tracerSpeedFactor = 5         // desired "precision"; the higher the value further off-screen but really not a big deal
+            while (tracerXCoord > -50 && tracerXCoord < windowWidth + 50   // while on-screen
+                && tracerYCoord > -50 && tracerYCoord < windowHeight + 50) {
                 tracerXCoord += (xVector * tracerSpeedFactor)
                 tracerYCoord += (yVector * tracerSpeedFactor)
             }   // upon completion we have the tracer coords. updated to the "offscreen" point we will translate to
-            console.log(shape.className + "'s x-vec is " + xVector.toString())
-            console.log(shape.className + "'s y-vec is " + yVector.toString())
-            shape.style.position = "absolute"
             let translateVectorX = tracerXCoord - startingPosX
             let translateVectorY = tracerYCoord - startingPosY
-            console.log("translate(" + translateVectorX + "px, " + translateVectorY + "px)")
             shape.style.transform = "translate(" + translateVectorX + "px, " + translateVectorY + "px)" // random translation
             let rotationAngle = Math.random() * 360
             // += on the line below to keep effects of previous transform
@@ -114,6 +103,7 @@ function centredFinished(event, shapeToHide) {
     // shapeToHide.style.display = "none"
     var shapeContainer = document.getElementById("shape-container")
     shapeContainer.style.display = "none"
+    //document.body.appendChild(module).focus() // similar to two line combo below
     document.body.appendChild(module)
     window.getComputedStyle(module).top; // this line forces a redraw; otherwise no anim.
     module.classList.add("expand")

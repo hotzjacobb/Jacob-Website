@@ -1,9 +1,15 @@
 
+* { /* for cross-browser consistancy */
+    margin: 0;
+    padding: 0;
+} 
+
 body {
     background-color: #DBDCDE;
     overflow: hidden;
-    /*white-space: nowrap;*/
-    /*max-height: 100%;*/
+    /* white-space: nowrap;* /
+    /* max-height: 100%; */
+    /* min-height: 100%; */
     /* padding: 0px; */
     /* margin: 0px; */
 }
@@ -279,6 +285,7 @@ a {
 }
 
 #module {
+    position: relative;
     top: 0;
     left: 0;
     right: 0;
@@ -289,15 +296,15 @@ a {
 }
 
 #module.expand {
+    /* position: relative; */
     height: 90%;
-    margin-top: 5%;
-    margin-bottom: 0px;
-    padding-top: 0px;
-    padding-bottom: 0px;
-    border-width: 0px;
-    padding: 0px;
     width: 70%;
-    margin-left: 15%;
+    position:absolute;
+    left:0; 
+    right:0;
+    top:0; 
+    bottom:0;
+    margin:auto;
     /*background-color: rgba(231, 34, 41, .88);*/
     transform: rotate(360deg);
     /* translation specs. for when the shape expands to module */
