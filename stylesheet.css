@@ -189,7 +189,7 @@ h2, button {
     transform: skew(-30deg); 
     position: absolute;
     top: 160px;
-    left: 130px;
+    left: 135px;
     visibility: hidden;
 }
 
@@ -216,14 +216,14 @@ h2, button {
     the front, hide #blue-text-alt and unhide #blue-text for ease of use */
     position: relative;
     top: 163px;
-    left: -6px;
+    left: 8px;
 }
 
 #blog-alt {
     transform: skew(-30deg); 
     position: relative;
-    top: 12px;
-    left: 108px;
+    top: 9px;
+    left: 113px;
     visibility: hidden;
 }
 
@@ -299,7 +299,7 @@ a {
     /* position: relative; */
     height: 90%;
     width: 70%;
-    position:absolute;
+    position: absolute;
     left:0; 
     right:0;
     top:0; 
@@ -324,4 +324,13 @@ a {
     transition-duration: 1.0s, 1.0s, 1.0s;
     transition-delay: 0.0s, 0.0s, 0.0s;
     transition-timing-function: ease-in-out;
+    /* opacity: 100%; */
+}
+
+#back-arrow {
+    position: absolute;
+    /*height: 10%;*/
+    width: 8%;
+    left: 8%;
+    top: 10%;
 }

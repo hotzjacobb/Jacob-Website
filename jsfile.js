@@ -107,6 +107,16 @@ function centredFinished(event, shapeToHide) {
     document.body.appendChild(module)
     window.getComputedStyle(module).top; // this line forces a redraw; otherwise no anim.
     module.classList.add("expand")
+    // fill module with text and back button when anim. almost done
+    setTimeout(function(){ 
+        var backArrow = document.createElement("INPUT")
+        backArrow.type = "image"
+        backArrow.src = "./images/noun_back_1227051.png"
+        backArrow.alt = "Back"
+        backArrow.onclick = restoreInitialPage
+        backArrow.id = "back-arrow"
+        document.body.appendChild(backArrow)
+    }, 900); 
 }
 
 
@@ -134,7 +144,7 @@ function deleteText(clickedButtonId) {
 // css attributes manually. If adding changes to the initial page be sure to
 // make any corresponding changes here.
 function restoreInitialPage() {
-
+ console.log("hey there")
 }
 
 // Helper function that makes the alt buttons visible for css animations
