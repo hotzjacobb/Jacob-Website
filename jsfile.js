@@ -4,10 +4,12 @@
 // makes the email icon disappear (replaced by text) and then reappear
 function copyEmail() {
     correctEmail()
+
     let emailImg = document.getElementById("emailImg")
     let emailText = document.getElementById("address")
     emailImg.style.display = "none"
     emailText.style.display = "inline-block"   // display my email in text
+
     setTimeout(function () {            // after ten seconds go back to email icon
         emailText.style.display = "none"
         emailImg.style.display = "block"
@@ -17,11 +19,12 @@ function copyEmail() {
 // called when the user clicks on a button to clear all the other shapes away
 // this function when finished calls another function to animate the clicked shape
 function onClickDismissShapes(btnClicked) {
+    
     toggleAlts()
     deleteText(btnClicked.id)
+
     var shapeContainer = document.getElementById("shape-container")
     var shapes = shapeContainer.children // Returns an HTMLCollection
-    // TODO: Disable all buttons during animation
     for (shape of shapes) {
         if (shape.className !== btnClicked.parentElement.className) {
             // potentially set display to none here during transiton
@@ -65,10 +68,11 @@ function onClickDismissShapes(btnClicked) {
     }
     // once translation ends remove the shape's button text and hide other page elements
     // and then add class to do transition to submodule
-    console.log(btnClicked)
-    btnClicked.parentElement.addEventListener('transitionend', function() {
+
+    btnClicked.parentElement.addEventListener('transitionend', function () {
+        // note weird bug that when this is not a lambda the click mouse-event fires textClickedFinished
         textClickedFinished(btnClicked.parentElement, btnClicked)
-    }, {once : true})  // when this is not a lambda the click mouse-event fires textClickedFinished
+    }, { once: true }) 
     btnClicked.parentElement.classList.add("textclicked")  // move clicked shape into position
 }
 
@@ -77,21 +81,21 @@ function onClickDismissShapes(btnClicked) {
 // of other elements to prepare before creating the new module
 function textClickedFinished(shape, btnClicked) {
     console.log("textClickedFinished called")
-   btnClicked.innerHTML = ""
-   document.getElementById("footer").style.display = "none" // don't display other page elements
-   document.getElementById("header").style.display = "none"
-   // next callback for animation
-   shape.addEventListener('transitionend', function(event) {
-       centredFinished(event, shape)
-   })
-   shape.classList.add("centred")
+    btnClicked.innerHTML = ""
+    document.getElementById("footer").style.display = "none" // don't display other page elements
+    document.getElementById("header").style.display = "none"
+    // next callback for animation
+    shape.addEventListener('transitionend', function (event) {
+        centredFinished(event, shape)
+    })
+    shape.classList.add("centred")
 }
 
 // This function first hides that last shape and its container
 // and then creates the new div that is the module.
 function centredFinished(event, shapeToHide) {
     console.log(event.propertyName)
-    if (event.propertyName !== "border-bottom-left-radius") {return} // guard against earlier animation triggering it
+    if (event.propertyName !== "border-bottom-left-radius") { return } // guard against earlier animation triggering it
     // css animations + vanilla js is not particulary dev. friendly
     // TODO: Need to find a better guard because this does not apply to all shapes
     console.log("centredFinished called")
@@ -108,15 +112,15 @@ function centredFinished(event, shapeToHide) {
     window.getComputedStyle(module).top; // this line forces a redraw; otherwise no anim.
     module.classList.add("expand")
     // fill module with text and back button when anim. almost done
-    setTimeout(function(){ 
+    setTimeout(function () {
         var backArrow = document.createElement("INPUT")
         backArrow.type = "image"
         backArrow.src = "./images/noun_back_1227051.png"
         backArrow.alt = "Back"
-        backArrow.onclick = restoreInitialPage
+        backArrow.onclick = removeModule
         backArrow.id = "back-arrow"
         document.body.appendChild(backArrow)
-    }, 900); 
+    }, 900);
 }
 
 
@@ -137,14 +141,34 @@ function deleteText(clickedButtonId) {
     }
 }
 
-
+// Triggers a brief animation before deleting the module
+// from the page. Places listener which upon completion
+// calls restoreInitialPage
+function removeModule() {
+    var module = document.getElementById("module")
+    module.addEventListener("transitionend", restoreInitialPage, {once: true})
+    module.classList.remove("expand") // first animate removal of module
+    var backArrow = document.getElementById("back-arrow")
+    backArrow.remove()
+}
 
 // Function called when the user clicks on the back button
 // restores the initial page state to how it was by changing the html and 
 // css attributes manually. If adding changes to the initial page be sure to
 // make any corresponding changes here.
 function restoreInitialPage() {
- console.log("hey there")
+    document.getElementById("header").style.display = "block"
+
+    var shapeContainer = document.getElementById("shape-container")
+    shapeContainer.style.display = "block"
+    var shapes = shapeContainer.children
+    // reset shapes to initial position; potentially incorporating
+    // JQuery's clone() here instead would be more efficient
+    for (shape of shapes) {
+        shape.style.opacity = "100%"
+    }
+
+    document.getElementById("footer").style.display = "grid"
 }
 
 // Helper function that makes the alt buttons visible for css animations
@@ -173,14 +197,35 @@ function toggleAlts() {
     }
 }
 
-// the email in the html is missing a few letter
+// the email in the html is missing a few letters
 // so as to not be registered by scrapers
 function correctEmail() {
     var address = document.getElementById("address")
     if (address.innerHTML.substring(0, 5) !== "hotzj") {
-    console.log("cool")
-    address.innerHTML = address.innerHTML.substring(0, 2) + "tzj" 
-    + address.innerHTML.substring(2, 6) + "b" + address.innerHTML.substring(6)
+        console.log("cool")
+        address.innerHTML = address.innerHTML.substring(0, 2) + "tzj"
+            + address.innerHTML.substring(2, 6) + "b" + address.innerHTML.substring(6)
     }
 }
 
+// https://stackoverflow.com/questions/122102/what-is-the-most-efficient-way-to-deep-clone-an-object-in-javascript/122190#122190
+// works for dom elements
+// potentially could use instead of resetting shapes
+function clone(obj) {
+    if (obj === null || typeof (obj) !== 'object' || 'isActiveClone' in obj)
+        return obj;
+
+    if (obj instanceof Date)
+        var temp = new obj.constructor(); //or new Date(obj);
+    else
+        var temp = obj.constructor();
+
+    for (var key in obj) {
+        if (Object.prototype.hasOwnProperty.call(obj, key)) {
+            obj['isActiveClone'] = null;
+            temp[key] = clone(obj[key]);
+            delete obj['isActiveClone'];
+        }
+    }
+    return temp;
+}

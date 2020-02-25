@@ -33,7 +33,7 @@ header {
 /*  the shapes' portion of the canvas */
 #shape-container {
     height: 65%;
-    overflow: hidden;
+    overflow: hidden; 
 }
 
 .shape {
@@ -285,7 +285,7 @@ a {
 }
 
 #module {
-    position: relative;
+    position: absolute;
     top: 0;
     left: 0;
     right: 0;
@@ -293,20 +293,6 @@ a {
     height: 0px;
     width: 0px;
     margin: auto;
-}
-
-#module.expand {
-    /* position: relative; */
-    height: 90%;
-    width: 70%;
-    position: absolute;
-    left:0; 
-    right:0;
-    top:0; 
-    bottom:0;
-    margin:auto;
-    /*background-color: rgba(231, 34, 41, .88);*/
-    transform: rotate(360deg);
     /* translation specs. for when the shape expands to module */
     -webkit-transition-property: height, width, -webkit-transform;
     -webkit-transition-duration: 1.0s, 1.0s, 1.0s;
@@ -324,6 +310,20 @@ a {
     transition-duration: 1.0s, 1.0s, 1.0s;
     transition-delay: 0.0s, 0.0s, 0.0s;
     transition-timing-function: ease-in-out;
+}
+
+#module.expand {
+    /* position: relative; */
+    height: 90%;
+    width: 70%;
+    position: absolute;
+    left:0; 
+    right:0;
+    top:0; 
+    bottom:0;
+    margin:auto;
+    /*background-color: rgba(231, 34, 41, .88);*/
+    transform: rotate(360deg);
     /* opacity: 100%; */
 }
 
