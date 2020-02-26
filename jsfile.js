@@ -88,16 +88,19 @@ function onClickDismissShapes(btnClicked) {
 // the shape's removal as well as clearing the page
 // of other elements to prepare before creating the new module
 function textClickedFinished(shape, btnClicked) {
-    console.log("textclickedfinished called")
     btnClicked.storedInnerHTML = btnClicked.innerHTML
     btnClicked.innerHTML = ""
     document.getElementById("footer").style.display = "none" // don't display other page elements
     document.getElementById("header").style.display = "none"
 
     shape.addEventListener('transitionend', function handler() {
-        if (event.propertyName !== "border-bottom-left-radius") { return } // guard against earlier animation triggering it
+        console.log("handler called")
+        console.log(event)
+        if (event.propertyName !== "border-bottom-left-radius" &&
+           event.propertyName !== "border-radius") { return } // guard against earlier animation triggering it
         // css animations + vanilla js is not particulary dev. friendly
         // TODO: Need to find a better guard because this does not apply to all shapes
+        console.log("past check")
         shape.removeEventListener('transitionend', handler)
         centredFinished(shape)
     })
