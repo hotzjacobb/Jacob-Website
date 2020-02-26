@@ -1,6 +1,5 @@
 // Created by Jacob Hotz 17 Dec. 2019
 
-
 // makes the email icon disappear (replaced by text) and then reappear
 function copyEmail() {
     correctEmail()
@@ -18,14 +17,20 @@ function copyEmail() {
 
 // called when the user clicks on a button to clear all the other shapes away
 // this function when finished calls another function to animate the clicked shape
+
+// use this to change the CSS variable values from JS
+const docStyle = document.documentElement.style;
+
 function onClickDismissShapes(btnClicked) {
     
     toggleAlts()
     deleteText(btnClicked.id)
 
+    document.getElementsByTagName
+
     var shapeContainer = document.getElementById("shape-container")
     var shapes = shapeContainer.children // Returns an HTMLCollection
-    for (shape of shapes) {
+    for (var shape of shapes) {
         if (shape.className !== btnClicked.parentElement.className) {
             // potentially set display to none here during transiton
             var xVector = Math.random() - .5
@@ -47,7 +52,6 @@ function onClickDismissShapes(btnClicked) {
             let windowHeight = window.innerHeight
             let startingPosX = (rect.right - rect.left) + rect.left
             let startingPosY = (rect.bottom - rect.top) + rect.top
-            console.log(startingPosY)
             var tracerXCoord = startingPosX  // no rotations before this
             var tracerYCoord = startingPosY   // no rotations before this
             let tracerSpeedFactor = 5         // desired "precision"; the higher the value further off-screen but really not a big deal
@@ -58,12 +62,17 @@ function onClickDismissShapes(btnClicked) {
             }   // upon completion we have the tracer coords. updated to the "offscreen" point we will translate to
             let translateVectorX = tracerXCoord - startingPosX
             let translateVectorY = tracerYCoord - startingPosY
-            shape.style.transform = "translate(" + translateVectorX + "px, " + translateVectorY + "px)" // random translation
+            //shape.style.transform = "translate(" + translateVectorX + "px, " + translateVectorY + "px)" // random translation
             let rotationAngle = Math.random() * 360
             // += on the line below to keep effects of previous transform
-            shape.style.transform += "rotate(" + rotationAngle.toString() + "deg)" // random rotation
-            shape.style.opacity = 0
-            // shape.style.display = "none"
+            // shape.style.transform += "rotate(" + rotationAngle.toString() + "deg)" // random rotation
+            console.log(translateVectorX)
+            console.log(rotationAngle)
+            docStyle.setProperty("--transform-x-" + shape.id, translateVectorX.toString() + "px")
+            docStyle.setProperty("--transform-y-" + shape.id, translateVectorY.toString() + "px")
+            docStyle.setProperty("--rotation-" + shape.id, rotationAngle.toString() + "deg")
+            shape.classList.add("dismiss")
+            window.getComputedStyle(shape).top; 
         }
     }
     // once translation ends remove the shape's button text and hide other page elements
@@ -80,7 +89,6 @@ function onClickDismissShapes(btnClicked) {
 // the shape's removal as well as clearing the page
 // of other elements to prepare before creating the new module
 function textClickedFinished(shape, btnClicked) {
-    console.log("textClickedFinished called")
     btnClicked.innerHTML = ""
     document.getElementById("footer").style.display = "none" // don't display other page elements
     document.getElementById("header").style.display = "none"
@@ -94,12 +102,9 @@ function textClickedFinished(shape, btnClicked) {
 // This function first hides that last shape and its container
 // and then creates the new div that is the module.
 function centredFinished(event, shapeToHide) {
-    console.log(event.propertyName)
     if (event.propertyName !== "border-bottom-left-radius") { return } // guard against earlier animation triggering it
     // css animations + vanilla js is not particulary dev. friendly
     // TODO: Need to find a better guard because this does not apply to all shapes
-    console.log("centredFinished called")
-    console.log(event)
     var module = document.createElement("DIV")
     module.id = "module"
     var colour = window.getComputedStyle(shapeToHide).getPropertyValue("background-color")
@@ -130,11 +135,11 @@ function centredFinished(event, shapeToHide) {
 function deleteText(clickedButtonId) {
     let shapeContainer = document.getElementById("shape-container")
     let buttons = shapeContainer.getElementsByTagName("BUTTON")
-    for (button of buttons) {  // disable clicking on buttons now that animation in course
+    for (var button of buttons) {  // disable clicking on buttons now that animation in course
         button.disabled = true
     }
     // delete the text of the buttons
-    for (button of buttons) {    // do one letter of one button at a time
+    for (var button of buttons) {    // do one letter of one button at a time
         if (button.id !== clickedButtonId) {  // don't delete the text of clicked button
             button.innerHTML = ""
         }
@@ -164,8 +169,13 @@ function restoreInitialPage() {
     var shapes = shapeContainer.children
     // reset shapes to initial position; potentially incorporating
     // JQuery's clone() here instead would be more efficient
-    for (shape of shapes) {
-        shape.style.opacity = "100%"
+    // for (var shape of shapes) {
+    //     shape.style.opacity = "100%"
+    // }
+    for (var shape of shapes) {
+        shape.classList.remove("dismiss")
+        shape.classList.remove("centred")
+        shape.classList.remove("textclicked")
     }
 
     document.getElementById("footer").style.display = "grid"
@@ -179,19 +189,17 @@ function toggleAlts() {
     var alts = document.getElementsByClassName("alt")
     var nonAlts = document.getElementsByClassName("non-alt")
     if (window.getComputedStyle(alts[0]).getPropertyValue("visibility") === "hidden") {
-        console.log("hey")
-        for (element of nonAlts) {       // hide nonAlts
+        for (var element of nonAlts) {       // hide nonAlts
             element.style.visibility = "hidden"
         }
-        for (element of alts) {       // show alts
+        for (var element of alts) {       // show alts
             element.style.visibility = "visible"
         }
     } else {
-        console.log("hi")
-        for (element of alts) {       // hide alts
+        for (var element of alts) {       // hide alts
             element.style.visibility = "hidden"
         }
-        for (element of nonAlts) {       // show nonAlts
+        for (var element of nonAlts) {       // show nonAlts
             element.style.visibility = "visible"
         }
     }
@@ -202,7 +210,6 @@ function toggleAlts() {
 function correctEmail() {
     var address = document.getElementById("address")
     if (address.innerHTML.substring(0, 5) !== "hotzj") {
-        console.log("cool")
         address.innerHTML = address.innerHTML.substring(0, 2) + "tzj"
             + address.innerHTML.substring(2, 6) + "b" + address.innerHTML.substring(6)
     }

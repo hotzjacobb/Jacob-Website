@@ -4,6 +4,21 @@
     padding: 0;
 } 
 
+:root { /* for css variables manipulated by js */
+    --transform-x-red: 0px;
+    --transform-y-red: 0px;
+    --rotation-red: 0px;
+    --transform-x-blanchedalmond: 0px;
+    --transform-y-blanchedalmond: 0px;
+    --rotation-blanchedalmond: 0px;
+    --transform-x-blue: 0px;
+    --transform-y-blue: 0px;
+    --rotation-blue: 0px;
+    --transform-x-yellow: 0px;
+    --transform-y-yellow: 0px;
+    --rotation-yellow: 0px;
+}
+
 body {
     background-color: #DBDCDE;
     overflow: hidden;
@@ -43,10 +58,28 @@ header {
     top: 0; 
     bottom: 0;
     margin: auto;
-    -webkit-transition: 3.0s ease-out;  /* triggered by js when other shape clicked */
-    -moz-transition: 3.0s ease-out;
-    -o-transition: 3.0s ease-out;
-    transition: 3.0s ease-out;
+    /* translation specs. for when the shapes are not picked */
+    -webkit-transition-property: opacity, -webkit-transform;
+    -webkit-transition-duration: 3.0s, 3.0s;
+    -webkit-transition-delay: 0.0s, 0.0s;
+    -webkit-transition-timing-function: ease-out;
+    -moz-transition-property: opacity, -webkit-transform;
+    -moz-transition-duration: 3.0, 3.0s;
+    -moz-transition-delay: 0.0s, 0.0s;
+    -moz-transition-timing-function: ease-out;
+    -ms-transformtransition-property: opacity, -webkit-transform;
+    -ms-transformtransition-duration: 3.0s, 3.0s;
+    -ms-transformtransition-delay: 0.0s, 0.0s;
+    -ms-transformtransition-timing-function: ease-out;
+    transition-property: opacity, transform;
+    transition-duration: 3.0s, 3.0s;
+    transition-delay: 0.0s, 0.0s;
+    transition-timing-function: ease-out;
+}
+
+.shape.dismiss {
+    opacity: 0%;
+    /* transform: translate(var(--tranform-x), var(--transform-y)) rotate(var(--rotation)); */
 }
 
 .circle {
@@ -70,6 +103,7 @@ header {
     width: 250px;
     transform: skew(30deg);
 }
+
 
 .red {
     background-color: rgba(231, 34, 41, .88);
@@ -123,6 +157,10 @@ header {
     transform: rotate(-47deg) scale(0.0);
 }
 
+.red.dismiss {
+    transform: translate(var(--transform-x-red), var(--transform-y-red)) rotate(var(--rotation-red));
+}
+
 .blanchedalmond {
     /*colour set in triangle due to being part of borders*/
     left: 0px;
@@ -131,6 +169,10 @@ header {
 
 .blanchedalmond.textclicked {
 
+}
+
+.blanchedalmond.dismiss {
+    transform: translate(var(--transform-x-blanchedalmond), var(--transform-y-blanchedalmond)) rotate(var(--rotation-blanchedalmond));
 }
 
 .blue {
@@ -142,6 +184,10 @@ header {
 
 }
 
+.blue.dismiss {
+    transform: translate(var(--transform-x-blue), var(--transform-y-blue)) rotate(var(--rotation-blue));
+}
+
 .yellow {
     background-color: rgba(251, 193, 24, .8);
     left: 300px;
@@ -149,6 +195,10 @@ header {
 
 .yellow.textclicked {
 
+}
+
+.yellow.dismiss {
+    transform: translate(var(--transform-x-yellow), var(--transform-y-yellow)) rotate(var(--rotation-yellow));
 }
 
 h2, button {
