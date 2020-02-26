@@ -89,6 +89,7 @@ function onClickDismissShapes(btnClicked) {
 // the shape's removal as well as clearing the page
 // of other elements to prepare before creating the new module
 function textClickedFinished(shape, btnClicked) {
+    btnClicked.storedInnerHTML = btnClicked.innerHTML
     btnClicked.innerHTML = ""
     document.getElementById("footer").style.display = "none" // don't display other page elements
     document.getElementById("header").style.display = "none"
@@ -141,7 +142,9 @@ function deleteText(clickedButtonId) {
     // delete the text of the buttons
     for (var button of buttons) {    // do one letter of one button at a time
         if (button.id !== clickedButtonId) {  // don't delete the text of clicked button
+            button.storedInnerHTML = button.innerHTML
             button.innerHTML = ""
+            console.log(button.storedInnerHTML)
         }
     }
 }
@@ -167,15 +170,19 @@ function restoreInitialPage() {
     var shapeContainer = document.getElementById("shape-container")
     shapeContainer.style.display = "block"
     var shapes = shapeContainer.children
-    // reset shapes to initial position; potentially incorporating
-    // JQuery's clone() here instead would be more efficient
-    // for (var shape of shapes) {
-    //     shape.style.opacity = "100%"
-    // }
+
     for (var shape of shapes) {
         shape.classList.remove("dismiss")
         shape.classList.remove("centred")
         shape.classList.remove("textclicked")
+    }
+
+    toggleAlts()  // go back to non-animation labels for correct z-value
+
+    var buttons = document.getElementsByTagName("BUTTON")
+    for (var button of buttons) {  // give buttons text again
+        button.innerHTML = button.storedInnerHTML
+        button.disabled = false
     }
 
     document.getElementById("footer").style.display = "grid"
@@ -213,26 +220,4 @@ function correctEmail() {
         address.innerHTML = address.innerHTML.substring(0, 2) + "tzj"
             + address.innerHTML.substring(2, 6) + "b" + address.innerHTML.substring(6)
     }
-}
-
-// https://stackoverflow.com/questions/122102/what-is-the-most-efficient-way-to-deep-clone-an-object-in-javascript/122190#122190
-// works for dom elements
-// potentially could use instead of resetting shapes
-function clone(obj) {
-    if (obj === null || typeof (obj) !== 'object' || 'isActiveClone' in obj)
-        return obj;
-
-    if (obj instanceof Date)
-        var temp = new obj.constructor(); //or new Date(obj);
-    else
-        var temp = obj.constructor();
-
-    for (var key in obj) {
-        if (Object.prototype.hasOwnProperty.call(obj, key)) {
-            obj['isActiveClone'] = null;
-            temp[key] = clone(obj[key]);
-            delete obj['isActiveClone'];
-        }
-    }
-    return temp;
 }
