@@ -79,7 +79,6 @@ function onClickDismissShapes(btnClicked) {
     // and then add class to do transition to submodule
 
     btnClicked.parentElement.addEventListener('transitionend', function () {
-        // note weird bug that when this is not a lambda the click mouse-event fires textClickedFinished
         textClickedFinished(btnClicked.parentElement, btnClicked)
     }, { once: true }) 
     btnClicked.parentElement.classList.add("textclicked")  // move clicked shape into position
@@ -89,23 +88,26 @@ function onClickDismissShapes(btnClicked) {
 // the shape's removal as well as clearing the page
 // of other elements to prepare before creating the new module
 function textClickedFinished(shape, btnClicked) {
+    console.log("textclickedfinished called")
     btnClicked.storedInnerHTML = btnClicked.innerHTML
     btnClicked.innerHTML = ""
     document.getElementById("footer").style.display = "none" // don't display other page elements
     document.getElementById("header").style.display = "none"
-    // next callback for animation
-    shape.addEventListener('transitionend', function (event) {
-        centredFinished(event, shape)
+
+    shape.addEventListener('transitionend', function handler() {
+        if (event.propertyName !== "border-bottom-left-radius") { return } // guard against earlier animation triggering it
+        // css animations + vanilla js is not particulary dev. friendly
+        // TODO: Need to find a better guard because this does not apply to all shapes
+        shape.removeEventListener('transitionend', handler)
+        centredFinished(shape)
     })
     shape.classList.add("centred")
 }
 
 // This function first hides that last shape and its container
 // and then creates the new div that is the module.
-function centredFinished(event, shapeToHide) {
-    if (event.propertyName !== "border-bottom-left-radius") { return } // guard against earlier animation triggering it
-    // css animations + vanilla js is not particulary dev. friendly
-    // TODO: Need to find a better guard because this does not apply to all shapes
+function centredFinished(shapeToHide) {
+    shapeToHide.removeEventListener("transitionend", centredFinished)
     var module = document.createElement("DIV")
     module.id = "module"
     var colour = window.getComputedStyle(shapeToHide).getPropertyValue("background-color")
@@ -153,11 +155,13 @@ function deleteText(clickedButtonId) {
 // from the page. Places listener which upon completion
 // calls restoreInitialPage
 function removeModule() {
+    console.log("Remove module called")
     var module = document.getElementById("module")
     module.addEventListener("transitionend", restoreInitialPage, {once: true})
     module.classList.remove("expand") // first animate removal of module
     var backArrow = document.getElementById("back-arrow")
     backArrow.remove()
+    console.log(document.getElementById("back-arrow"))
 }
 
 // Function called when the user clicks on the back button
@@ -165,6 +169,10 @@ function removeModule() {
 // css attributes manually. If adding changes to the initial page be sure to
 // make any corresponding changes here.
 function restoreInitialPage() {
+
+    var module = document.getElementById("module")
+    module.remove()
+
     document.getElementById("header").style.display = "block"
 
     var shapeContainer = document.getElementById("shape-container")
