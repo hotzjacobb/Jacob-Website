@@ -78,8 +78,9 @@ header {
 }
 
 .shape.dismiss {
-    /* opacity: 0%; */
-    /* transform: translate(var(--tranform-x), var(--transform-y)) rotate(var(--rotation)); */
+    opacity: 0%;
+    -webkit-opacity: 0.0; /* for Safari */ 
+    /* https://stackoverflow.com/questions/47674285/different-display-of-css-opacity-in-safari-browser */
 }
 
 .circle {
@@ -158,7 +159,6 @@ header {
 }
 
 .red.dismiss {
-    opacity: 0%;
     transform: translate(var(--transform-x-red), var(--transform-y-red)) rotate(var(--rotation-red));
 }
 
@@ -173,7 +173,6 @@ header {
 }
 
 .blanchedalmond.dismiss {
-    opacity: 0%;
     transform: translate(var(--transform-x-blanchedalmond), var(--transform-y-blanchedalmond)) rotate(var(--rotation-blanchedalmond));
 }
 
@@ -187,7 +186,6 @@ header {
 }
 
 .blue.dismiss {
-    opacity: 0%;
     transform: translate(var(--transform-x-blue), var(--transform-y-blue)) rotate(var(--rotation-blue));
 }
 
@@ -201,7 +199,6 @@ header {
 }
 
 .yellow.dismiss {
-    opacity: 0%;
     transform: translate(var(--transform-x-yellow), var(--transform-y-yellow)) rotate(var(--rotation-yellow));
 }
 

@@ -126,7 +126,8 @@ function centredFinished(shapeToHide) {
     setTimeout(function () {
         var backArrow = document.createElement("INPUT")
         backArrow.type = "image"
-        backArrow.src = "./images/noun_back_1227051.png"
+        // backArrow.src = "./images/noun_back_1521731.png" // alternate back icon; by Besticons noun proj.
+        backArrow.src = "./images/noun_back_878298.png"
         backArrow.alt = "Back"
         backArrow.onclick = removeModule
         backArrow.id = "back-arrow"
