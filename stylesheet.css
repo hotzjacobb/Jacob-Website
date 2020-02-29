@@ -58,6 +58,27 @@ header {
     top: 0; 
     bottom: 0;
     margin: auto;
+}
+
+.shape.texthovered {
+  animation-name: example;
+  animation-duration: 1.5s;
+}
+
+@keyframes example {
+    /* 0%   {transform: skew(0deg);} */
+    /* 25%  {transform: skew(-30deg);} */
+    50%  {transform: skew(5deg);}
+    /* 75%  {transform: skew(30deg);} */
+    /* 100% {transform: skew(0deg);} */
+  }
+  
+  /* TODO: Shape hover animation needs to be generalized for cross browser,
+           needs to be made unique to each shape because already skewed 
+           ones shift way more, and related to application of class needs to 
+           be resolved  */
+
+.shape.dismiss {
     /* translation specs. for when the shapes are not picked */
     -webkit-transition-property: opacity, -webkit-transform;
     -webkit-transition-duration: 3.0s, 3.0s;
@@ -75,9 +96,6 @@ header {
     transition-duration: 3.0s, 3.0s;
     transition-delay: 0.0s, 0.0s;
     transition-timing-function: ease-out;
-}
-
-.shape.dismiss {
     opacity: 0%;
     -webkit-opacity: 0.0; /* for Safari */ 
     /* https://stackoverflow.com/questions/47674285/different-display-of-css-opacity-in-safari-browser */
@@ -210,6 +228,12 @@ h2, button {
     font-weight: 600;
     background: none;
     border: none;
+    cursor: pointer;
+}
+
+.shape-button:hover  {
+    /* color: green; */
+    font-weight: 100;
 }
 
 #proj {
@@ -245,7 +269,7 @@ h2, button {
 }
 
 #blog {    /* similar to resume and resume-alt; 
-    css has no good way to override a parent's z-index; if not
+    as far as I know css has no good way to override a parent's z-index; if not
     the triangle would cover the blog button and make it unclickable.
     Thus we resort to this solution. For easo-of-use with animations 
     bring the parralelogram to the front and then use #blog-alt. 
@@ -258,7 +282,7 @@ h2, button {
     left: -102px;
 }
 
-#resume {   /*  css gives no good way to overide stacking content
+#resume {   /*  as far as I know css gives no good way to overide stacking content
     inheritance so this is a hack to get around that; this text is
     a child of the yellow circle so that it is at the front. The #blue-text
     element is a child  of the blue circle in the same absolute position 
@@ -309,7 +333,10 @@ img, input, #address {
 
 #address {
     display: none;
-    transform: translate(-80px, -27px);
+    /* transform: translate(-80px, -27px); */
+    position: relative;
+    left: 150px;
+    top: 70px;
 }
 
 a {
@@ -374,7 +401,7 @@ a {
     bottom:0;
     margin:auto;
     /*background-color: rgba(231, 34, 41, .88);*/
-    transform: rotate(360deg);
+    /* transform: rotate(0deg); */
     /* opacity: 100%; */
 }
 

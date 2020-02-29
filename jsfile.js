@@ -15,6 +15,33 @@ function copyEmail() {
     }, 10000)
 }
 
+// called when the user puts the mouse over 
+function mouseOverText(btnHovered) {
+ var shape
+ // map text to correct shape
+ switch (btnHovered.id) {
+     case "proj":
+         shape = document.getElementById("red")
+         break;
+    case "about":
+         shape = document.getElementById("blanchedalmond")
+         break;
+    case "resume":
+         shape = document.getElementById("blue")
+         break;
+    case "blog":
+         shape = document.getElementById("blue")
+         break;
+    case "misc":
+         shape = document.getElementById("yellow")
+         break;
+     default:
+         console.error("unexpected btnHovered value")
+ }
+ shape.classList.add("texthovered")
+ console.log("coolio")
+}
+
 // called when the user clicks on a button to clear all the other shapes away
 // this function when finished calls another function to animate the clicked shape
 
@@ -22,9 +49,10 @@ function copyEmail() {
 const docStyle = document.documentElement.style;
 
 function onClickDismissShapes(btnClicked) {
-    
+
     toggleAlts()
     deleteText(btnClicked.id)
+    btnClicked.style.cursor = "auto"  // have to do this as text not deleted yet
 
     document.getElementsByTagName
 
@@ -90,6 +118,7 @@ function onClickDismissShapes(btnClicked) {
 function textClickedFinished(shape, btnClicked) {
     btnClicked.storedInnerHTML = btnClicked.innerHTML
     btnClicked.innerHTML = ""
+    btnClicked.style.cursor = "pointer" // restore for when going back to home screen
     document.getElementById("footer").style.display = "none" // don't display other page elements
     document.getElementById("header").style.display = "none"
 
