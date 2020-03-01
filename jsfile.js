@@ -16,37 +16,52 @@ function copyEmail() {
 }
 
 // called when the user puts the mouse over 
-function mouseOverText(btnHovered) {
- var shape
- // map text to correct shape
- switch (btnHovered.id) {
-     case "proj":
-         shape = document.getElementById("red")
-         break;
-    case "about":
-         shape = document.getElementById("blanchedalmond")
-         break;
-    case "resume":
-         shape = document.getElementById("blue")
-         break;
-    case "blog":
-         shape = document.getElementById("blue")
-         break;
-    case "misc":
-         shape = document.getElementById("yellow")
-         break;
-     default:
-         console.error("unexpected btnHovered value")
- }
- shape.classList.add("texthovered")
- console.log("coolio")
-}
+// function mouseOverText(btnHovered) {
+
+
+//  let shape
+//  // map text to correct shape
+//  switch (btnHovered.id) {
+//      case "proj":
+//          shape = document.getElementById("red")
+//          break;
+//     case "about":
+//          shape = document.getElementById("blanchedalmond")
+//          break;
+//     case "resume":
+//          shape = document.getElementById("blue")
+//          break;
+//     case "blog":
+//          shape = document.getElementById("blue")
+//          break;
+//     case "misc":
+//          shape = document.getElementById("yellow")
+//          break;
+//      default:
+//          console.error("unexpected btnHovered value")
+//  }
+
+ // set to false in animend event listener
+//  btnHovered.postponeOnClick = true  // for more info see above onClickDismissShapes
+
+//  shape.classList.add("texthovered")
+// }
 
 // called when the user clicks on a button to clear all the other shapes away
 // this function when finished calls another function to animate the clicked shape
 
-// use this to change the CSS variable values from JS
+// use this to change the CSS letiable values from JS
 const docStyle = document.documentElement.style;
+
+// Used to delay exectution of click
+// transition if hover anim. still in effect. Set to true when hover;
+// set to false when hover anim. ends. If hover a...
+
+// NOTE: Decided not to use the above; leaving in this commit as a record
+// of the idea; I already deleted other remnants. Skew is
+// cool but too much of a hassle given the z-layer hacks and 
+// anim transition combo.
+// var postponeOnClick = false; 
 
 function onClickDismissShapes(btnClicked) {
 
@@ -54,34 +69,33 @@ function onClickDismissShapes(btnClicked) {
     deleteText(btnClicked.id)
     btnClicked.style.cursor = "auto"  // have to do this as text not deleted yet
 
-    document.getElementsByTagName
 
-    var shapeContainer = document.getElementById("shape-container")
-    var shapes = shapeContainer.children // Returns an HTMLCollection
-    for (var shape of shapes) {
+    let shapeContainer = document.getElementById("shape-container")
+    let shapes = shapeContainer.children // Returns an HTMLCollection
+    for (let shape of shapes) {
         if (shape.className !== btnClicked.parentElement.className) {
             // potentially set display to none here during transiton
-            var xVector = Math.random() - .5
-            var yVector = Math.random() - .5
+            let xVector = Math.random() - .5
+            let yVector = Math.random() - .5
             if (Math.abs(yVector) > Math.abs(xVector)) {   // get movement for one frame
-                var ratio = (yVector * 1.0 / xVector)
+                let ratio = (yVector * 1.0 / xVector)
                 ratio = Math.round(ratio)
                 yVector = (yVector > 0) ? Math.abs(ratio) : (-1 * Math.abs(ratio))
                 xVector = (xVector > 0) ? 1 : -1
             } else {
-                var ratio = (xVector * 1.0 / yVector)
+                let ratio = (xVector * 1.0 / yVector)
                 ratio = Math.round(ratio)
                 xVector = (xVector > 0) ? Math.abs(ratio) : (-1 * Math.abs(ratio))
                 yVector = (yVector > 0) ? 1 : -1
             }   // The smaller of xVector and yVector is now 1 and the larger keeps the same
             // the same ratio; will be used for movement across pixels
-            var rect = shape.getBoundingClientRect()
+            let rect = shape.getBoundingClientRect()
             let windowWidth = window.innerWidth
             let windowHeight = window.innerHeight
             let startingPosX = (rect.right - rect.left) + rect.left
             let startingPosY = (rect.bottom - rect.top) + rect.top
-            var tracerXCoord = startingPosX  // no rotations before this
-            var tracerYCoord = startingPosY   // no rotations before this
+            let tracerXCoord = startingPosX  // no rotations before this
+            let tracerYCoord = startingPosY   // no rotations before this
             let tracerSpeedFactor = 5         // desired "precision"; the higher the value further off-screen but really not a big deal
             while (tracerXCoord > -50 && tracerXCoord < windowWidth + 50   // while on-screen
                 && tracerYCoord > -50 && tracerYCoord < windowHeight + 50) {
@@ -140,12 +154,12 @@ function textClickedFinished(shape, btnClicked) {
 // and then creates the new div that is the module.
 function centredFinished(shapeToHide) {
     shapeToHide.removeEventListener("transitionend", centredFinished)
-    var module = document.createElement("DIV")
+    let module = document.createElement("DIV")
     module.id = "module"
-    var colour = window.getComputedStyle(shapeToHide).getPropertyValue("background-color")
+    let colour = window.getComputedStyle(shapeToHide).getPropertyValue("background-color")
     module.style.backgroundColor = colour   // module has the same colour as button's parent (shape)
     // shapeToHide.style.display = "none"
-    var shapeContainer = document.getElementById("shape-container")
+    let shapeContainer = document.getElementById("shape-container")
     shapeContainer.style.display = "none"
     //document.body.appendChild(module).focus() // similar to two line combo below
     document.body.appendChild(module)
@@ -153,7 +167,7 @@ function centredFinished(shapeToHide) {
     module.classList.add("expand")
     // fill module with text and back button when anim. almost done
     setTimeout(function () {
-        var backArrow = document.createElement("INPUT")
+        let backArrow = document.createElement("INPUT")
         backArrow.type = "image"
         // backArrow.src = "./images/noun_back_1521731.png" // alternate back icon; by Besticons noun proj.
         backArrow.src = "./images/noun_back_878298.png"
@@ -171,11 +185,11 @@ function centredFinished(shapeToHide) {
 function deleteText(clickedButtonId) {
     let shapeContainer = document.getElementById("shape-container")
     let buttons = shapeContainer.getElementsByTagName("BUTTON")
-    for (var button of buttons) {  // disable clicking on buttons now that animation in course
+    for (let button of buttons) {  // disable clicking on buttons now that animation in course
         button.disabled = true
     }
     // delete the text of the buttons
-    for (var button of buttons) {    // do one letter of one button at a time
+    for (let button of buttons) {    // do one letter of one button at a time
         if (button.id !== clickedButtonId) {  // don't delete the text of clicked button
             button.storedInnerHTML = button.innerHTML
             button.innerHTML = ""
@@ -189,10 +203,10 @@ function deleteText(clickedButtonId) {
 // calls restoreInitialPage
 function removeModule() {
     console.log("Remove module called")
-    var module = document.getElementById("module")
+    let module = document.getElementById("module")
     module.addEventListener("transitionend", restoreInitialPage, {once: true})
     module.classList.remove("expand") // first animate removal of module
-    var backArrow = document.getElementById("back-arrow")
+    let backArrow = document.getElementById("back-arrow")
     backArrow.remove()
     console.log(document.getElementById("back-arrow"))
 }
@@ -203,16 +217,16 @@ function removeModule() {
 // make any corresponding changes here.
 function restoreInitialPage() {
 
-    var module = document.getElementById("module")
+    let module = document.getElementById("module")
     module.remove()
 
     document.getElementById("header").style.display = "block"
 
-    var shapeContainer = document.getElementById("shape-container")
+    let shapeContainer = document.getElementById("shape-container")
     shapeContainer.style.display = "block"
-    var shapes = shapeContainer.children
+    let shapes = shapeContainer.children
 
-    for (var shape of shapes) {
+    for (let shape of shapes) {
         shape.classList.remove("dismiss")
         shape.classList.remove("centred")
         shape.classList.remove("textclicked")
@@ -220,8 +234,8 @@ function restoreInitialPage() {
 
     toggleAlts()  // go back to non-animation labels for correct z-value
 
-    var buttons = document.getElementsByTagName("BUTTON")
-    for (var button of buttons) {  // give buttons text again
+    let buttons = document.getElementsByTagName("BUTTON")
+    for (let button of buttons) {  // give buttons text again
         button.innerHTML = button.storedInnerHTML
         button.disabled = false
     }
@@ -234,20 +248,20 @@ function restoreInitialPage() {
 // animation.
 // For more info read the comment by the "alt" buttons in the CSS file.
 function toggleAlts() {
-    var alts = document.getElementsByClassName("alt")
-    var nonAlts = document.getElementsByClassName("non-alt")
+    let alts = document.getElementsByClassName("alt")
+    let nonAlts = document.getElementsByClassName("non-alt")
     if (window.getComputedStyle(alts[0]).getPropertyValue("visibility") === "hidden") {
-        for (var element of nonAlts) {       // hide nonAlts
+        for (let element of nonAlts) {       // hide nonAlts
             element.style.visibility = "hidden"
         }
-        for (var element of alts) {       // show alts
+        for (let element of alts) {       // show alts
             element.style.visibility = "visible"
         }
     } else {
-        for (var element of alts) {       // hide alts
+        for (let element of alts) {       // hide alts
             element.style.visibility = "hidden"
         }
-        for (var element of nonAlts) {       // show nonAlts
+        for (let element of nonAlts) {       // show nonAlts
             element.style.visibility = "visible"
         }
     }
@@ -256,7 +270,7 @@ function toggleAlts() {
 // the email in the html is missing a few letters
 // so as to not be registered by scrapers
 function correctEmail() {
-    var address = document.getElementById("address")
+    let address = document.getElementById("address")
     if (address.innerHTML.substring(0, 5) !== "hotzj") {
         address.innerHTML = address.innerHTML.substring(0, 2) + "tzj"
             + address.innerHTML.substring(2, 6) + "b" + address.innerHTML.substring(6)

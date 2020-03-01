@@ -62,14 +62,22 @@ header {
 
 .shape.texthovered {
   animation-name: example;
-  animation-duration: 1.5s;
+  animation-duration: 1.0s;
 }
+
+.noanim {
+    -webkit-animation: none !important;
+    -moz-animation: none !important;
+    -o-animation: none !important;
+    animation: none !important;
+  }
 
 @keyframes example {
     /* 0%   {transform: skew(0deg);} */
-    /* 25%  {transform: skew(-30deg);} */
-    50%  {transform: skew(5deg);}
-    /* 75%  {transform: skew(30deg);} */
+    /* 25%  {transform: rotate(-5deg);} */
+    50%  {opacity: 50%;}
+    /* 50%  {border: 5px black solid;} */
+    /* 75%  {transform: rotate(5deg);} */
     /* 100% {transform: skew(0deg);} */
   }
   
@@ -152,7 +160,7 @@ header {
     right: 0;
     bottom: 0;
     margin: auto;
-    transform: rotate(407deg);  /* value based on rotation in #proj */
+   transform: rotate(407deg);  /* value based on rotation in #proj */
 }
 
 .red.centred {
@@ -225,15 +233,18 @@ h2, button {
     font-size: 190%;
     color: black;
     font-style: normal;
-    font-weight: 600;
+    font-weight: 400;
     background: none;
     border: none;
     cursor: pointer;
 }
+.shape-button {
+-webkit-font-smoothing: antialiased;
+}
 
-.shape-button:hover  {
-    /* color: green; */
-    font-weight: 100;
+.shape-button:hover  {  
+    text-decoration: underline;
+    /* text-shadow: 0 0 .9px #333, 0 0 .9px #333, 0 0 .9px #333; */
 }
 
 #proj {
