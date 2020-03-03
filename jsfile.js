@@ -41,7 +41,7 @@ function copyEmail() {
 //          console.error("unexpected btnHovered value")
 //  }
 
- // set to false in animend event listener
+//  set to false in animend event listener
 //  btnHovered.postponeOnClick = true  // for more info see above onClickDismissShapes
 
 //  shape.classList.add("texthovered")
