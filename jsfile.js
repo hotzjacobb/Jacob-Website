@@ -74,6 +74,7 @@ function onClickDismissShapes(btnClicked) {
     let shapes = shapeContainer.children // Returns an HTMLCollection
     for (let shape of shapes) {
         if (shape.className !== btnClicked.parentElement.className) {
+            console.log("hey")
             // potentially set display to none here during transiton
             let xVector = Math.random() - .5
             let yVector = Math.random() - .5
@@ -108,8 +109,6 @@ function onClickDismissShapes(btnClicked) {
             let rotationAngle = Math.random() * 360
             // += on the line below to keep effects of previous transform
             // shape.style.transform += "rotate(" + rotationAngle.toString() + "deg)" // random rotation
-            console.log(translateVectorX)
-            console.log(rotationAngle)
             docStyle.setProperty("--transform-x-" + shape.id, translateVectorX.toString() + "px")
             docStyle.setProperty("--transform-y-" + shape.id, translateVectorY.toString() + "px")
             docStyle.setProperty("--rotation-" + shape.id, rotationAngle.toString() + "deg")
@@ -119,7 +118,7 @@ function onClickDismissShapes(btnClicked) {
     }
     // once translation ends remove the shape's button text and hide other page elements
     // and then add class to do transition to submodule
-
+    btnClicked.classList.add("no-hover")  // disables underlining
     btnClicked.parentElement.addEventListener('transitionend', function () {
         textClickedFinished(btnClicked.parentElement, btnClicked)
     }, { once: true }) 
@@ -130,6 +129,7 @@ function onClickDismissShapes(btnClicked) {
 // the shape's removal as well as clearing the page
 // of other elements to prepare before creating the new module
 function textClickedFinished(shape, btnClicked) {
+    console.log("woah")
     btnClicked.storedInnerHTML = btnClicked.innerHTML
     btnClicked.innerHTML = ""
     btnClicked.style.cursor = "pointer" // restore for when going back to home screen
@@ -137,13 +137,10 @@ function textClickedFinished(shape, btnClicked) {
     document.getElementById("header").style.display = "none"
 
     shape.addEventListener('transitionend', function handler() {
-        console.log("handler called")
-        console.log(event)
         if (event.propertyName !== "border-bottom-left-radius" &&
            event.propertyName !== "border-radius") { return } // guard against earlier animation triggering it
         // css animations + vanilla js is not particulary dev. friendly
         // TODO: Need to find a better guard because this does not apply to all shapes
-        console.log("past check")
         shape.removeEventListener('transitionend', handler)
         centredFinished(shape)
     })
@@ -193,7 +190,6 @@ function deleteText(clickedButtonId) {
         if (button.id !== clickedButtonId) {  // don't delete the text of clicked button
             button.storedInnerHTML = button.innerHTML
             button.innerHTML = ""
-            console.log(button.storedInnerHTML)
         }
     }
 }
@@ -202,13 +198,11 @@ function deleteText(clickedButtonId) {
 // from the page. Places listener which upon completion
 // calls restoreInitialPage
 function removeModule() {
-    console.log("Remove module called")
     let module = document.getElementById("module")
     module.addEventListener("transitionend", restoreInitialPage, {once: true})
     module.classList.remove("expand") // first animate removal of module
     let backArrow = document.getElementById("back-arrow")
     backArrow.remove()
-    console.log(document.getElementById("back-arrow"))
 }
 
 // Function called when the user clicks on the back button
@@ -238,6 +232,7 @@ function restoreInitialPage() {
     for (let button of buttons) {  // give buttons text again
         button.innerHTML = button.storedInnerHTML
         button.disabled = false
+        button.classList.remove("no-hover")
     }
 
     document.getElementById("footer").style.display = "grid"
