@@ -217,8 +217,26 @@ header {
     -webkit-opacity: 0.0;
 }
 
-.blanchedalmond.centred {
-    
+.blanchedalmond.centred {    
+    /* we essentially do nothing here as animating the triangle
+    presents complications */
+    -webkit-transition-property: left;
+    -webkit-transition-duration: 0.1s;
+    -webkit-transition-delay: 0.0s;
+    -webkit-transition-timing-function: ease-out;
+    -moz-transition-property: left;
+    -moz-transition-duration: 0.2s;
+    -moz-transition-delay: 0.0s;
+    -moz-transition-timing-function: ease-out;
+    -ms-transformtransition-property: left;
+    -ms-transformtransition-duration: 0.1s;
+    -ms-transformtransition-delay: 0.0s;
+    -ms-transformtransition-timing-function: ease-out;
+    transition-property: left;
+    transition-duration: 0.1s;
+    transition-delay: 0.0s;
+    transition-timing-function: ease-out;
+    left: 1px;
 }
 
 .blanchedalmond.dismiss {

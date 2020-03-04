@@ -137,8 +137,12 @@ function textClickedFinished(shape, btnClicked) {
     document.getElementById("header").style.display = "none"
 
     shape.addEventListener('transitionend', function handler() {
+        console.log(event)
         if (event.propertyName !== "border-bottom-left-radius" &&
-           event.propertyName !== "border-radius") { return } // guard against earlier animation triggering it
+           event.propertyName !== "border-radius" 
+           && event.propertyName !== "left") { return }
+        // TODO: fix!!!!!
+        // above is guard against earlier animation triggering it
         // css animations + vanilla js is not particulary dev. friendly
         // TODO: Need to find a better guard because this does not apply to all shapes
         shape.removeEventListener('transitionend', handler)
@@ -150,6 +154,7 @@ function textClickedFinished(shape, btnClicked) {
 // This function first hides that last shape and its container
 // and then creates the new div that is the module.
 function centredFinished(shapeToHide) {
+    console.log("heyyo")
     shapeToHide.removeEventListener("transitionend", centredFinished)
     let module = document.createElement("DIV")
     module.id = "module"
