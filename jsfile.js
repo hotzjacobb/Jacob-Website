@@ -15,37 +15,6 @@ function copyEmail() {
     }, 10000)
 }
 
-// called when the user puts the mouse over 
-// function mouseOverText(btnHovered) {
-
-
-//  let shape
-//  // map text to correct shape
-//  switch (btnHovered.id) {
-//      case "proj":
-//          shape = document.getElementById("red")
-//          break;
-//     case "about":
-//          shape = document.getElementById("blanchedalmond")
-//          break;
-//     case "resume":
-//          shape = document.getElementById("blue")
-//          break;
-//     case "blog":
-//          shape = document.getElementById("blue")
-//          break;
-//     case "misc":
-//          shape = document.getElementById("yellow")
-//          break;
-//      default:
-//          console.error("unexpected btnHovered value")
-//  }
-
-//  set to false in animend event listener
-//  btnHovered.postponeOnClick = true  // for more info see above onClickDismissShapes
-
-//  shape.classList.add("texthovered")
-// }
 
 // called when the user clicks on a button to clear all the other shapes away
 // this function when finished calls another function to animate the clicked shape
@@ -53,19 +22,14 @@ function copyEmail() {
 // use this to change the CSS letiable values from JS
 const docStyle = document.documentElement.style;
 
-// Used to delay exectution of click
-// transition if hover anim. still in effect. Set to true when hover;
-// set to false when hover anim. ends. If hover a...
-
-// NOTE: Decided not to use the above; leaving in this commit as a record
-// of the idea; I already deleted other remnants. Skew is
-// cool but too much of a hassle given the z-layer hacks and 
-// anim transition combo.
-// var postponeOnClick = false; 
-
 function onClickDismissShapes(btnClicked) {
 
     toggleAlts()
+    let clickedShape = getCorrectShape(btnClicked)
+    let displayedButton = getDisplayButton(btnClicked)
+
+    console.log(displayedButton)
+
     deleteText(btnClicked.id)
     btnClicked.style.cursor = "auto"  // have to do this as text not deleted yet
 
@@ -73,7 +37,7 @@ function onClickDismissShapes(btnClicked) {
     let shapeContainer = document.getElementById("shape-container")
     let shapes = shapeContainer.children // Returns an HTMLCollection
     for (let shape of shapes) {
-        if (shape.className !== btnClicked.parentElement.className) {
+        if (shape.className !== clickedShape.className) {
             console.log("hey")
             // potentially set display to none here during transiton
             let xVector = Math.random() - .5
@@ -119,20 +83,22 @@ function onClickDismissShapes(btnClicked) {
     // once translation ends remove the shape's button text and hide other page elements
     // and then add class to do transition to submodule
     btnClicked.classList.add("no-hover")  // disables underlining
-    btnClicked.parentElement.addEventListener('transitionend', function () {
-        textClickedFinished(btnClicked.parentElement, btnClicked)
+    clickedShape.addEventListener('transitionend', function () {
+        btnClicked.storedInnerHTML = btnClicked.innerHTML // save html button text
+        displayedButton.storedInnerHTML = displayedButton.innerHTML
+        textClickedFinished(clickedShape, displayedButton)
     }, { once: true }) 
-    btnClicked.parentElement.classList.add("textclicked")  // move clicked shape into position
+    clickedShape.classList.add("textclicked")  // move clicked shape into position
 }
 
 // Called after the shape has been centred. Animates
 // the shape's removal as well as clearing the page
 // of other elements to prepare before creating the new module
-function textClickedFinished(shape, btnClicked) {
+function textClickedFinished(shape, displayedButton) {
     console.log("woah")
-    btnClicked.storedInnerHTML = btnClicked.innerHTML
-    btnClicked.innerHTML = ""
-    btnClicked.style.cursor = "pointer" // restore for when going back to home screen
+    console.log(displayedButton)
+    displayedButton.style.cursor = "pointer" // restore for when going back to home screen
+    displayedButton.innerHTML = ""
     document.getElementById("footer").style.display = "none" // don't display other page elements
     document.getElementById("header").style.display = "none"
 
@@ -140,7 +106,8 @@ function textClickedFinished(shape, btnClicked) {
         console.log(event)
         if (event.propertyName !== "border-bottom-left-radius" &&
            event.propertyName !== "border-radius" 
-           && event.propertyName !== "left") { return }
+           && event.propertyName !== "right"
+           && event.propertyName !== "transform") { return }
         // TODO: fix!!!!!
         // above is guard against earlier animation triggering it
         // css animations + vanilla js is not particulary dev. friendly
@@ -158,7 +125,12 @@ function centredFinished(shapeToHide) {
     shapeToHide.removeEventListener("transitionend", centredFinished)
     let module = document.createElement("DIV")
     module.id = "module"
-    let colour = window.getComputedStyle(shapeToHide).getPropertyValue("background-color")
+    let colour
+    if (shapeToHide.id === "blanchedalmond") {
+        colour = window.getComputedStyle(shapeToHide).getPropertyValue("border-bottom-color")
+    } else {
+        colour = window.getComputedStyle(shapeToHide).getPropertyValue("background-color")
+    }
     module.style.backgroundColor = colour   // module has the same colour as button's parent (shape)
     // shapeToHide.style.display = "none"
     let shapeContainer = document.getElementById("shape-container")
@@ -193,6 +165,8 @@ function deleteText(clickedButtonId) {
     // delete the text of the buttons
     for (let button of buttons) {    // do one letter of one button at a time
         if (button.id !== clickedButtonId) {  // don't delete the text of clicked button
+            if (clickedButtonId === "blog" && button.id === "blog-alt") {continue} // special cases
+            if (clickedButtonId === "resume" && button.id === "resume-alt") {continue} 
             button.storedInnerHTML = button.innerHTML
             button.innerHTML = ""
         }
@@ -242,6 +216,33 @@ function restoreInitialPage() {
 
     document.getElementById("footer").style.display = "grid"
 }
+
+// Helper function that maps the button to its correct shape
+// regardless of the parent eleement
+
+function getCorrectShape(btnClicked) {
+    switch (btnClicked.id) {
+    case "resume":
+         return document.getElementById("blue")
+    case "blog":
+         return document.getElementById("blue")
+     default:
+         return btnClicked.parentElement
+    }
+}
+
+// Helper function that gets the button displayed during anim.
+function getDisplayButton(btnClicked) {
+    switch (btnClicked.id) {
+    case "resume":
+         return document.getElementById("resume-alt")
+    case "blog":
+         return document.getElementById("blog-alt")
+     default:
+         return btnClicked
+    }
+}
+
 
 // Helper function that makes the alt buttons visible for css animations
 // or restores the non-alts so that they can be clicked when not in an

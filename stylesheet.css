@@ -72,19 +72,6 @@ header {
     animation: none !important;
   }
 
-/* @keyframes example { */
-    /* 0%   {transform: skew(0deg);} */
-    /* 25%  {transform: rotate(-5deg);} */
-    /* 50%  {opacity: 50%;} */
-    /* 50%  {border: 5px black solid;} */
-    /* 75%  {transform: rotate(5deg);} */
-    /* 100% {transform: skew(0deg);} */
-  /* } */
-  
-  /* TODO: Shape hover animation needs to be generalized for cross browser,
-           needs to be made unique to each shape because already skewed 
-           ones shift way more, and related to application of class needs to 
-           be resolved  */
 
 .shape.dismiss {
     /* translation specs. for when the shapes are not picked */
@@ -194,20 +181,20 @@ header {
     z-index: 4;
     /* translation specs. for when the shape moves to the centre */
     -webkit-transition-property: opacity, -webkit-opacity;
-    -webkit-transition-duration: 3.0s, 3.0s;
-    -webkit-transition-delay: 0.2s, 0.2s;
+    -webkit-transition-duration: 2.2s, 2.2s;
+    -webkit-transition-delay: 2.2s, 2.2s;
     -webkit-transition-timing-function: ease-in-out;
     -moz-transition-property: opacity, -webkit-opacity;
-    -moz-transition-duration: 3.0, 3.0s;
-    -moz-transition-delay: 0.2s, 0.2s;
+    -moz-transition-duration: 2.2s, 2.2s;
+    -moz-transition-delay: 1.0s, 1.0s;
     -moz-transition-timing-function: ease-in-out;
     -ms-transformtransition-property: opacity, -webkit-opacity;
-    -ms-transformtransition-duration: 3.0s, 3.0s;
-    -ms-transformtransition-delay: 0.2s, 0.2s;
+    -ms-transformtransition-duration: 2.2s, 2.2s;
+    -ms-transformtransition-delay: 1.0s, 1.0s;
     -ms-transformtransition-timing-function: ease-in-out;
     transition-property: opacity, -webkit-opacity;
-    transition-duration: 3.0s, 3.0s;
-    transition-delay: 0.2s, 0.2s;
+    transition-duration: 2.2s, 2.2s;
+    transition-delay: 2.2s, 2.2s;
     transition-timing-function: ease-in-out;
     
 }
@@ -220,23 +207,23 @@ header {
 .blanchedalmond.centred {    
     /* we essentially do nothing here as animating the triangle
     presents complications */
-    -webkit-transition-property: left;
+    -webkit-transition-property: right;
     -webkit-transition-duration: 0.1s;
     -webkit-transition-delay: 0.0s;
     -webkit-transition-timing-function: ease-out;
-    -moz-transition-property: left;
+    -moz-transition-property: right;
     -moz-transition-duration: 0.2s;
     -moz-transition-delay: 0.0s;
     -moz-transition-timing-function: ease-out;
-    -ms-transformtransition-property: left;
+    -ms-transformtransition-property: right;
     -ms-transformtransition-duration: 0.1s;
     -ms-transformtransition-delay: 0.0s;
     -ms-transformtransition-timing-function: ease-out;
-    transition-property: left;
+    transition-property: right;
     transition-duration: 0.1s;
     transition-delay: 0.0s;
     transition-timing-function: ease-out;
-    left: 1px;
+    right: 1px;
 }
 
 .blanchedalmond.dismiss {
@@ -246,10 +233,51 @@ header {
 .blue {
     background-color: rgba(61, 93, 170, .7);
     left: 100px;
+    -webkit-transition-property: left, -webkit-transform;
+    -webkit-transition-duration: 2.2s, 2.2s;
+    -webkit-transition-delay: 1.0s, 1.0s;
+    -webkit-transition-timing-function: ease-in-out;
+    -moz-transition-property: left, -webkit-transform;
+    -moz-transition-duration: 2.2s, 2.2;
+    -moz-transition-delay: 1.0s, 1.0s;
+    -moz-transition-timing-function: ease-in-out;
+    -ms-transformtransition-property: left, -webkit-transform;
+    -ms-transformtransition-duration: 2.2s, 2.2;
+    -ms-transformtransition-delay: 1.0s, 1.0s;
+    -ms-transformtransition-timing-function: ease-in-out;
+    transition-property: left, transform;
+    transition-duration: 2.2s, 2.2;
+    transition-delay: 1.0s, 1.0s;
+    transition-timing-function: ease-in-out;
 }
 
 .blue.textclicked {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    transform: skew(0deg);
+}
 
+.blue.centred {  
+    -webkit-transition-property: -webkit-transform;
+    -webkit-transition-duration: 1.0s, 1.0s;
+    -webkit-transition-delay: 0.0s, 0.0s;
+    -webkit-transition-timing-function: ease-out;
+    -moz-transition-property: -webkit-transform;
+    -moz-transition-duration: 1.0s , 1.0s;
+    -moz-transition-delay: 0.0s, 0.0s;
+    -moz-transition-timing-function: ease-out;
+    -ms-transformtransition-property: -webkit-transform;
+    -ms-transformtransition-duration: 1.0s, 1.0s;
+    -ms-transformtransition-delay: 0.0s, 0.0s;
+    -ms-transformtransition-timing-function: ease-out;
+    transition-property:  transform;
+    transition-duration: 1.0s, 1.0s;
+    transition-delay: 0.0s, 0.0s;
+    transition-timing-function: ease-out;
+    transform: rotate(-180deg) scale(0.001);
 }
 
 .blue.dismiss {
@@ -259,10 +287,52 @@ header {
 .yellow {
     background-color: rgba(251, 193, 24, .8);
     left: 300px;
+    -webkit-transition-property: left, -webkit-transform;
+    -webkit-transition-duration: 3.0s, 3.0s;
+    -webkit-transition-delay: 0.2s, 0.2s;
+    -webkit-transition-timing-function: ease-in-out;
+    -moz-transition-property: left, -webkit-transform;
+    -moz-transition-duration: 3.0, 3.0s;
+    -moz-transition-delay: 0.2s, 0.2s;
+    -moz-transition-timing-function: ease-in-out;
+    -ms-transformtransition-property: left, -webkit-transform;
+    -ms-transformtransition-duration: 3.0s, 3.0s;
+    -ms-transformtransition-delay: 0.2s, 0.2s;
+    -ms-transformtransition-timing-function: ease-in-out;
+    transition-property: left, transform;
+    transition-duration: 3.0s, 3.0s;
+    transition-delay: 0.2s, 0.2s;
+    transition-timing-function: ease-in-out;
 }
 
 .yellow.textclicked {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    transform: rotate(-420deg);  /* value based on rotation in #misc */
+}
 
+.yellow.centred {  
+    -webkit-transition-property: border-radius, -webkit-transform;
+    -webkit-transition-duration: 1.0s, 1.0s;
+    -webkit-transition-delay: 0.0s, 0.0s;
+    -webkit-transition-timing-function: ease-out;
+    -moz-transition-property: border-radius, -webkit-transform;
+    -moz-transition-duration: 1.0s , 1.0s;
+    -moz-transition-delay: 0.0s, 0.0s;
+    -moz-transition-timing-function: ease-out;
+    -ms-transformtransition-property: border-radius, -webkit-transform;
+    -ms-transformtransition-duration: 1.0s, 1.0s;
+    -ms-transformtransition-delay: 0.0s, 0.0s;
+    -ms-transformtransition-timing-function: ease-out;
+    transition-property: border-radius, transform;
+    transition-duration: 1.0s, 1.0s;
+    transition-delay: 0.0s, 0.0s;
+    transition-timing-function: ease-out;
+    border-radius: 0%;
+    transform: rotate(60deg) scale(0.0);
 }
 
 .yellow.dismiss {
@@ -279,7 +349,7 @@ h2, button {
     border: none;
     cursor: pointer;
 }
-.shape-button {
+.shape-button, .alt {
 -webkit-font-smoothing: antialiased;
 }
 
