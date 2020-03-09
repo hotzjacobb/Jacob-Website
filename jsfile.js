@@ -101,20 +101,18 @@ function textClickedFinished(shape, displayedButton) {
     displayedButton.innerHTML = ""
     document.getElementById("footer").style.display = "none" // don't display other page elements
     document.getElementById("header").style.display = "none"
-
-    shape.addEventListener('transitionend', function handler() {
+    // Note: the below setTimeout is hacky and not ideal; I spent
+    // a lot of time looking for a better solution even asking stack 
+    // overflow if there's a better way but it seems like there's not.
+    // It's a guard against a preemptive call as Javascript receives 
+    // multiple CSS events. Moral of the story is probably use an animation
+    // library next time. 
+    setTimeout(function () {
+        shape.addEventListener('transitionend', function handler() {
         console.log(event)
-        if (event.propertyName !== "border-bottom-left-radius" &&
-           event.propertyName !== "border-radius" 
-           && event.propertyName !== "right"
-           && event.propertyName !== "transform") { return }
-        // TODO: fix!!!!!
-        // above is guard against earlier animation triggering it
-        // css animations + vanilla js is not particulary dev. friendly
-        // TODO: Need to find a better guard because this does not apply to all shapes
         shape.removeEventListener('transitionend', handler)
         centredFinished(shape)
-    })
+    })}, 60)
     shape.classList.add("centred")
 }
 
@@ -132,10 +130,8 @@ function centredFinished(shapeToHide) {
         colour = window.getComputedStyle(shapeToHide).getPropertyValue("background-color")
     }
     module.style.backgroundColor = colour   // module has the same colour as button's parent (shape)
-    // shapeToHide.style.display = "none"
     let shapeContainer = document.getElementById("shape-container")
     shapeContainer.style.display = "none"
-    //document.body.appendChild(module).focus() // similar to two line combo below
     document.body.appendChild(module)
     window.getComputedStyle(module).top; // this line forces a redraw; otherwise no anim.
     module.classList.add("expand")
