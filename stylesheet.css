@@ -339,6 +339,10 @@ header {
     transform: translate(var(--transform-x-yellow), var(--transform-y-yellow)) rotate(var(--rotation-yellow));
 }
 
+button {
+    cursor: pointer;
+}
+
 h2, button {
     font-family: 'Poiret One';
     font-size: 190%;
@@ -347,7 +351,6 @@ h2, button {
     font-weight: 400;
     background: none;
     border: none;
-    cursor: pointer;
 }
 .shape-button, .alt {
 -webkit-font-smoothing: antialiased;
@@ -526,9 +529,10 @@ a {
     top:0; 
     bottom:0;
     margin:auto;
-    /*background-color: rgba(231, 34, 41, .88);*/
-    /* transform: rotate(0deg); */
-    /* opacity: 100%; */
+}
+
+#content {
+    margin: 10%;
 }
 
 #back-arrow {
@@ -537,4 +541,8 @@ a {
     width: 8%;
     left: 8%;
     top: 10%;
+}
+
+#proj-hidden {
+    display: none;
 }

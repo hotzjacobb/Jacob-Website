@@ -105,26 +105,27 @@ function textClickedFinished(shape, displayedButton) {
     // a lot of time looking for a better solution even asking stack 
     // overflow if there's a better way but it seems like there's not.
     // It's a guard against a preemptive call as Javascript receives 
-    // multiple CSS events. Moral of the story is probably use an animation
-    // library next time. 
+    // multiple CSS events. Currently the fastest transition is 100ms 
+    // which this sufficiently allows. Moral of the story is probably 
+    // use an animation library next time. 
     setTimeout(function () {
         shape.addEventListener('transitionend', function handler() {
         console.log(event)
         shape.removeEventListener('transitionend', handler)
-        centredFinished(shape)
+        centredFinished(shape, displayedButton)
     })}, 60)
     shape.classList.add("centred")
 }
 
 // This function first hides that last shape and its container
 // and then creates the new div that is the module.
-function centredFinished(shapeToHide) {
+function centredFinished(shapeToHide, btnClicked) {
     console.log("heyyo")
     shapeToHide.removeEventListener("transitionend", centredFinished)
     let module = document.createElement("DIV")
     module.id = "module"
     let colour
-    if (shapeToHide.id === "blanchedalmond") {
+    if (shapeToHide.id === "blanchedalmond") { // necessary b/c of triangle
         colour = window.getComputedStyle(shapeToHide).getPropertyValue("border-bottom-color")
     } else {
         colour = window.getComputedStyle(shapeToHide).getPropertyValue("background-color")
@@ -145,10 +146,52 @@ function centredFinished(shapeToHide) {
         backArrow.onclick = removeModule
         backArrow.id = "back-arrow"
         document.body.appendChild(backArrow)
+        getModuleContent(btnClicked, module)
     }, 900);
 }
 
+// Helper function to get the module's appropriate content
+function getModuleContent(btnClicked, module) {
+    let moduleContent = document.createElement("DIV")
+    moduleContent.id = "content"
+    module.appendChild(moduleContent)
+    switch (btnClicked.storedInnerHTML) {
+        case "Projects":
 
+            // let projectsHeader = document.createElement("H2")
+            // projectsHeader.style.textAlign = "center"
+            // projectsHeader.innerHTML = "Projects"
+            // moduleContent.appendChild(projectsHeader)
+            // let projectsList = document.createElement("DIV")
+            // projectsList.appendChild(document.createElement("BR"))
+            // let project1 = document.createElement("H1")
+            // project1.innerHTML = "Wista (iOS weather app): "
+            // let project1Descrip = document.createElement("P")
+            // let appStoreLink = document.createElement("A")
+            // "Available on the app store"
+            // projectsList.appendChild(project1)
+            // moduleContent.appendChild(projectsList)
+            let projHidden = document.body.getElementById("proj-hidden")
+            module.after(projHidden)
+            projHidden.style.display = "inline"
+            
+            break
+        case "About me":
+
+            break
+        case "Blog":
+
+            break
+        case "Misc.":
+
+            break
+        case "Résumé":
+
+            break
+        default:
+            break
+    }
+}
 
 // helper function the performs the "animation" of deleting inner text from 
 // shapes to be removed; also disables the buttons
@@ -178,6 +221,8 @@ function removeModule() {
     module.classList.remove("expand") // first animate removal of module
     let backArrow = document.getElementById("back-arrow")
     backArrow.remove()
+    let content = document.getElementById("content")
+    content.remove()
 }
 
 // Function called when the user clicks on the back button
