@@ -130,7 +130,7 @@ function centredFinished(shapeToHide, btnClicked) {
     } else {
         colour = window.getComputedStyle(shapeToHide).getPropertyValue("background-color")
     }
-    module.style.backgroundColor = colour   // module has the same colour as button's parent (shape)
+    module.style.backgroundColor = 	colour  // module has the same colour as button's parent (shape)
     let shapeContainer = document.getElementById("shape-container")
     shapeContainer.style.display = "none"
     document.body.appendChild(module)
@@ -152,29 +152,14 @@ function centredFinished(shapeToHide, btnClicked) {
 
 // Helper function to get the module's appropriate content
 function getModuleContent(btnClicked, module) {
-    let moduleContent = document.createElement("DIV")
-    moduleContent.id = "content"
-    module.appendChild(moduleContent)
+    // let moduleContent = document.createElement("DIV")
+    // moduleContent.id = "content"
+    // module.appendChild(moduleContent)
     switch (btnClicked.storedInnerHTML) {
         case "Projects":
-
-            // let projectsHeader = document.createElement("H2")
-            // projectsHeader.style.textAlign = "center"
-            // projectsHeader.innerHTML = "Projects"
-            // moduleContent.appendChild(projectsHeader)
-            // let projectsList = document.createElement("DIV")
-            // projectsList.appendChild(document.createElement("BR"))
-            // let project1 = document.createElement("H1")
-            // project1.innerHTML = "Wista (iOS weather app): "
-            // let project1Descrip = document.createElement("P")
-            // let appStoreLink = document.createElement("A")
-            // "Available on the app store"
-            // projectsList.appendChild(project1)
-            // moduleContent.appendChild(projectsList)
-            let projHidden = document.body.getElementById("proj-hidden")
-            module.after(projHidden)
-            projHidden.style.display = "inline"
-            
+            let projHidden = document.getElementById("proj-hidden")
+            module.appendChild(projHidden)
+            projHidden.style.display = "block"
             break
         case "About me":
 
@@ -221,8 +206,9 @@ function removeModule() {
     module.classList.remove("expand") // first animate removal of module
     let backArrow = document.getElementById("back-arrow")
     backArrow.remove()
-    let content = document.getElementById("content")
-    content.remove()
+    let projHidden = document.getElementById("proj-hidden")
+    projHidden.style.display = "none";
+    document.body.appendChild(projHidden)
 }
 
 // Function called when the user clicks on the back button
@@ -233,6 +219,8 @@ function restoreInitialPage() {
 
     let module = document.getElementById("module")
     module.remove()
+
+    // TODO: move module-content back to body and hide
 
     document.getElementById("header").style.display = "block"
 

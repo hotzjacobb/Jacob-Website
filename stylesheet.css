@@ -466,14 +466,16 @@ img, input, #address {
     position: relative;
     left: 150px;
     top: 70px;
-}
-
-a {
     font-family: 'Poiret One';
     /* color: rgba(251, 193, 24, .8); */
     color: black;
     font-size: x-large;
     font-weight: 900;
+}
+
+.link {
+    color: black;
+    font-style: italic;
 }
 
 #email {
@@ -492,6 +494,7 @@ a {
 }
 
 #module {
+    overflow: scroll;
     position: absolute;
     top: 0;
     left: 0;
@@ -531,6 +534,10 @@ a {
     margin:auto;
 }
 
+.module-header {
+    text-align: center;
+}
+
 #content {
     margin: 10%;
 }
@@ -545,4 +552,33 @@ a {
 
 #proj-hidden {
     display: none;
+    margin: 10%;
+}
+
+.proj-entry {
+    padding: 6%;
+    border: medium;
+    border-color: black;
+    border-style: solid;
+}
+
+h3 {
+    font-family: 'Poiret One';
+    font-size: 260%;
+    color: black;
+    font-style: normal;
+    font-weight: 400;
+    background: none;
+}
+
+#proj1, #proj4, #proj7 {
+    background-color: blanchedalmond;
+}
+
+#proj2, #proj5  {
+    background-color: rgb(177, 201, 255);
+}
+
+#proj3, #proj6 {
+    background-color: rgba(250, 208, 82, 0.9);
 }
