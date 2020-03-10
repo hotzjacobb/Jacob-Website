@@ -97,24 +97,26 @@ header {
 }
 
 .circle {
-    height: 300px;
-    width: 300px;
+    /* height: 300px;
+    width: 300px; */
     border-radius: 50%;
 }
 
 .triangle {
     width: 0;
     height: 0;
+    top: -6px;
     border-left: 125px solid transparent;
     border-right: 125px solid transparent;
-    border-bottom: 300px solid blanchedalmond;
+    border-bottom: 301px solid blanchedalmond;
     transform: skew(-30deg);
 }
 
 
 .parellelogram {
-    height: 295px;
+    height: 300px;
     width: 250px;
+    top: -5;
     transform: skew(30deg);
 }
 
@@ -122,6 +124,9 @@ header {
 .red {
     background-color: rgba(231, 34, 41, .88);
     left: -300px;
+    top: -5px;
+    height: 300px;
+    width: 300px;
     /* translation specs. for when the shape moves to the centre */
     -webkit-transition-property: left, -webkit-transform;
     -webkit-transition-duration: 3.0s, 3.0s;
@@ -287,6 +292,9 @@ header {
 .yellow {
     background-color: rgba(251, 193, 24, .8);
     left: 300px;
+    top: -5px;
+    height: 300px;
+    width: 300px;
     -webkit-transition-property: left, -webkit-transform;
     -webkit-transition-duration: 3.0s, 3.0s;
     -webkit-transition-delay: 0.2s, 0.2s;
@@ -591,7 +599,15 @@ h3 {
 .about-me-img {
     display: inline-block;
     position: relative;
-    max-width: 49%;
+    max-width: 32%;
+    height: auto;
+    left: 6%;
+}
+
+#blank-space {
+    display: inline-block;
+    position: relative;
+    width: 20%;
     height: auto;
 }
 
@@ -610,7 +626,7 @@ h3 {
     margin: 10%;
 }
 
-iframe {
+#resume-iframe {
     width: 100%;
     height: 100%;
     top: 0;
@@ -618,4 +634,13 @@ iframe {
     right: 0;
     bottom: 0;
     margin: auto;
+}
+
+#soundcloud {
+    width: 40%;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    display: inline-block;
 }
