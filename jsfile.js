@@ -167,13 +167,19 @@ function getModuleContent(btnClicked, module) {
             aboutMeHidden.style.display = "block"
             break
         case "Blog":
-
+            let blog = document.getElementById("blog-hidden")
+            module.appendChild(blog)
+            blog.style.display = "block"
             break
         case "Misc.":
-
+            let misc = document.getElementById("misc-hidden")
+            module.appendChild(misc)
+            misc.style.display = "block"
             break
         case "Résumé":
-
+            let resume = document.getElementById("resume-hidden")
+            module.appendChild(resume)
+            resume.style.display = "block"
             break
         default:
             break
@@ -208,7 +214,7 @@ function removeModule() {
     module.classList.remove("expand") // first animate removal of module
     let backArrow = document.getElementById("back-arrow")
     backArrow.remove()
-    // Todo more general
+    // Hide content and then put back in main body
     let content = module.children[0]
     content.style.display = "none";
     document.body.appendChild(content)
