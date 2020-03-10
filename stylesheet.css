@@ -147,7 +147,7 @@ header {
 }
 
 .red.textclicked {
-    top: 0;
+    top: -5px;
     left: 0;
     right: 0;
     bottom: 0;
@@ -257,7 +257,7 @@ header {
 }
 
 .blue.textclicked {
-    top: 0;
+    top: -5px;
     left: 0;
     right: 0;
     bottom: 0;
@@ -314,7 +314,7 @@ header {
 }
 
 .yellow.textclicked {
-    top: 0;
+    top: -5px;
     left: 0;
     right: 0;
     bottom: 0;
