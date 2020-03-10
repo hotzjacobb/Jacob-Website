@@ -162,7 +162,9 @@ function getModuleContent(btnClicked, module) {
             projHidden.style.display = "block"
             break
         case "About me":
-
+            let aboutMeHidden = document.getElementById("about-me-hidden")
+            module.appendChild(aboutMeHidden)
+            aboutMeHidden.style.display = "block"
             break
         case "Blog":
 
@@ -206,9 +208,10 @@ function removeModule() {
     module.classList.remove("expand") // first animate removal of module
     let backArrow = document.getElementById("back-arrow")
     backArrow.remove()
-    let projHidden = document.getElementById("proj-hidden")
-    projHidden.style.display = "none";
-    document.body.appendChild(projHidden)
+    // Todo more general
+    let content = module.children[0]
+    content.style.display = "none";
+    document.body.appendChild(content)
 }
 
 // Function called when the user clicks on the back button

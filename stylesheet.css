@@ -448,7 +448,7 @@ footer {
     transition: roll-start come-to-front;
 }
 
-img, input, #address {
+img.grid, input, #address {
     /* reduce to appropriate image size */
     max-width:20%;
     height: auto;
@@ -524,7 +524,7 @@ img, input, #address {
 
 #module.expand {
     /* position: relative; */
-    height: 90%;
+    height: 100%;
     width: 70%;
     position: absolute;
     left:0; 
@@ -581,4 +581,16 @@ h3 {
 
 #proj3, #proj6 {
     background-color: rgba(250, 208, 82, 0.9);
+}
+
+#about-me-hidden {
+    display: none;
+    margin: 10%;
+}
+
+.about-me-img {
+    display: inline-block;
+    position: relative;
+    max-width: 49%;
+    height: auto;
 }
