@@ -76,19 +76,19 @@ header {
 .shape.dismiss {
     /* translation specs. for when the shapes are not picked */
     -webkit-transition-property: opacity, -webkit-transform;
-    -webkit-transition-duration: 3.0s, 3.0s;
+    -webkit-transition-duration: 2.2s, 2.2s;
     -webkit-transition-delay: 0.0s, 0.0s;
     -webkit-transition-timing-function: ease-out;
     -moz-transition-property: opacity, -webkit-transform;
-    -moz-transition-duration: 3.0, 3.0s;
+    -moz-transition-duration: 2.2s, 2.2s;
     -moz-transition-delay: 0.0s, 0.0s;
     -moz-transition-timing-function: ease-out;
     -ms-transformtransition-property: opacity, -webkit-transform;
-    -ms-transformtransition-duration: 3.0s, 3.0s;
+    -ms-transformtransition-duration: 2.2s, 2.2s;
     -ms-transformtransition-delay: 0.0s, 0.0s;
     -ms-transformtransition-timing-function: ease-out;
     transition-property: opacity, transform;
-    transition-duration: 3.0s, 3.0s;
+    transition-duration: 2.2s, 2.2s;
     transition-delay: 0.0s, 0.0s;
     transition-timing-function: ease-out;
     opacity: 0%;
@@ -129,19 +129,19 @@ header {
     width: 300px;
     /* translation specs. for when the shape moves to the centre */
     -webkit-transition-property: left, -webkit-transform;
-    -webkit-transition-duration: 3.0s, 3.0s;
+    -webkit-transition-duration: 2.0s, 2.0s;
     -webkit-transition-delay: 0.2s, 0.2s;
     -webkit-transition-timing-function: ease-in-out;
     -moz-transition-property: left, -webkit-transform;
-    -moz-transition-duration: 3.0, 3.0s;
+    -moz-transition-duration: 2.0s, 2.0s;
     -moz-transition-delay: 0.2s, 0.2s;
     -moz-transition-timing-function: ease-in-out;
     -ms-transformtransition-property: left, -webkit-transform;
-    -ms-transformtransition-duration: 3.0s, 3.0s;
+    -ms-transformtransition-duration: 2.0s, 2.0s;
     -ms-transformtransition-delay: 0.2s, 0.2s;
     -ms-transformtransition-timing-function: ease-in-out;
     transition-property: left, transform;
-    transition-duration: 3.0s, 3.0s;
+    transition-duration: 2.0s, 2.0s;
     transition-delay: 0.2s, 0.2s;
     transition-timing-function: ease-in-out;
 }
@@ -186,20 +186,20 @@ header {
     z-index: 4;
     /* translation specs. for when the shape moves to the centre */
     -webkit-transition-property: opacity, -webkit-opacity;
-    -webkit-transition-duration: 2.2s, 2.2s;
-    -webkit-transition-delay: 2.2s, 2.2s;
+    -webkit-transition-duration: 1.6s, 1.6s;
+    -webkit-transition-delay: 0.6s, 0.6s;
     -webkit-transition-timing-function: ease-in-out;
     -moz-transition-property: opacity, -webkit-opacity;
-    -moz-transition-duration: 2.2s, 2.2s;
-    -moz-transition-delay: 1.0s, 1.0s;
+    -moz-transition-duration: 1.6s, 1.6s;
+    -moz-transition-delay: 0.6s, 0.6s;
     -moz-transition-timing-function: ease-in-out;
     -ms-transformtransition-property: opacity, -webkit-opacity;
-    -ms-transformtransition-duration: 2.2s, 2.2s;
-    -ms-transformtransition-delay: 1.0s, 1.0s;
+    -ms-transformtransition-duration: 1.6s, 1.6s;
+    -ms-transformtransition-delay: 0.6s, 0.6s;
     -ms-transformtransition-timing-function: ease-in-out;
     transition-property: opacity, -webkit-opacity;
-    transition-duration: 2.2s, 2.2s;
-    transition-delay: 2.2s, 2.2s;
+    transition-duration: 1.6s, 1.6s;
+    transition-delay: 0.6s, 0.6s;
     transition-timing-function: ease-in-out;
     
 }
@@ -239,20 +239,20 @@ header {
     background-color: rgba(61, 93, 170, .7);
     left: 100px;
     -webkit-transition-property: left, -webkit-transform;
-    -webkit-transition-duration: 2.2s, 2.2s;
-    -webkit-transition-delay: 1.0s, 1.0s;
+    -webkit-transition-duration: 1.8s, 1.8s;
+    -webkit-transition-delay: 0.4s, 0.4s;
     -webkit-transition-timing-function: ease-in-out;
     -moz-transition-property: left, -webkit-transform;
-    -moz-transition-duration: 2.2s, 2.2;
-    -moz-transition-delay: 1.0s, 1.0s;
+    -moz-transition-duration: 1.8s, 1.8s;
+    -moz-transition-delay:  0.4s, 0.4s;
     -moz-transition-timing-function: ease-in-out;
     -ms-transformtransition-property: left, -webkit-transform;
-    -ms-transformtransition-duration: 2.2s, 2.2;
-    -ms-transformtransition-delay: 1.0s, 1.0s;
+    -ms-transformtransition-duration: 1.8s, 1.8s;
+    -ms-transformtransition-delay:  0.4s, 0.4s;
     -ms-transformtransition-timing-function: ease-in-out;
     transition-property: left, transform;
-    transition-duration: 2.2s, 2.2;
-    transition-delay: 1.0s, 1.0s;
+    transition-duration: 1.8s, 1.8s;
+    transition-delay:  0.4s, 0.4s;
     transition-timing-function: ease-in-out;
 }
 
@@ -296,19 +296,19 @@ header {
     height: 300px;
     width: 300px;
     -webkit-transition-property: left, -webkit-transform;
-    -webkit-transition-duration: 3.0s, 3.0s;
+    -webkit-transition-duration: 2.0s, 2.0s;
     -webkit-transition-delay: 0.2s, 0.2s;
     -webkit-transition-timing-function: ease-in-out;
     -moz-transition-property: left, -webkit-transform;
-    -moz-transition-duration: 3.0, 3.0s;
+    -moz-transition-duration: 2.0s, 2.0s;
     -moz-transition-delay: 0.2s, 0.2s;
     -moz-transition-timing-function: ease-in-out;
     -ms-transformtransition-property: left, -webkit-transform;
-    -ms-transformtransition-duration: 3.0s, 3.0s;
+    -ms-transformtransition-duration: 2.0s, 2.0s;
     -ms-transformtransition-delay: 0.2s, 0.2s;
     -ms-transformtransition-timing-function: ease-in-out;
     transition-property: left, transform;
-    transition-duration: 3.0s, 3.0s;
+    transition-duration: 2.0s, 2.0s;
     transition-delay: 0.2s, 0.2s;
     transition-timing-function: ease-in-out;
 }
@@ -513,19 +513,19 @@ img.grid, input, #address {
     margin: auto;
     /* translation specs. for when the shape expands to module */
     -webkit-transition-property: height, width, -webkit-transform;
-    -webkit-transition-duration: 1.0s, 1.0s, 1.0s;
+    -webkit-transition-duration: 0.8s, 0.8s, 0.8s;
     -webkit-transition-delay: 0.0s, 0.0s, 0.0s;
     -webkit-transition-timing-function: ease-in-out;
     -moz-transition-property: height, width, -webkit-transform;
-    -moz-transition-duration: 1.0s, 1.0s, 1.0s;
+    -moz-transition-duration: 0.8s, 0.8s, 0.8s;
     -moz-transition-delay: 0.0s, 0.0s, 0.0s;
     -moz-transition-timing-function: ease-in-out;
     -ms-transformtransition-property: height, width, -webkit-transform;
-    -ms-transformtransition-duration: 1.0s, 1.0s, 1.0s;
+    -ms-transformtransition-duration: 0.8s, 0.8s, 0.8s;
     -ms-transformtransition-delay: 0.0s, 0.0s, 0.0s;
     -ms-transformtransition-timing-function: ease-in-out;
     transition-property: height, width, transform;
-    transition-duration: 1.0s, 1.0s, 1.0s;
+    transition-duration: 0.8s, 0.8s, 0.8s;
     transition-delay: 0.0s, 0.0s, 0.0s;
     transition-timing-function: ease-in-out;
 }

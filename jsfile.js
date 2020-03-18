@@ -147,7 +147,7 @@ function centredFinished(shapeToHide, btnClicked) {
         backArrow.id = "back-arrow"
         document.body.appendChild(backArrow)
         getModuleContent(btnClicked, module)
-    }, 900);
+    }, 750);
 }
 
 // Helper function to get the module's appropriate content
