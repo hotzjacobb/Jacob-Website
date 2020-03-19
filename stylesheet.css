@@ -647,7 +647,7 @@ h3 {
 }
 
 #soundcloud {
-    width: 40%;
+    width: 5%;
     left: 0;
     right: 0;
     bottom: 0;
@@ -662,7 +662,7 @@ h3 {
 }
 
 #mobile {
-    
+    display: none;
 }
 
 .mobile-cell {
