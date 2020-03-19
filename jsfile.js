@@ -120,7 +120,6 @@ function textClickedFinished(shape, displayedButton) {
 // This function first hides that last shape and its container
 // and then creates the new div that is the module.
 function centredFinished(shapeToHide, btnClicked) {
-    console.log("heyyo")
     shapeToHide.removeEventListener("transitionend", centredFinished)
     let module = document.createElement("DIV")
     module.id = "module"
@@ -255,6 +254,7 @@ function restoreInitialPage() {
     document.getElementById("footer").style.display = "grid"
 }
 
+
 // Helper function that maps the button to its correct shape
 // regardless of the parent eleement
 
@@ -314,4 +314,11 @@ function correctEmail() {
         address.innerHTML = address.innerHTML.substring(0, 2) + "tzj"
             + address.innerHTML.substring(2, 6) + "b" + address.innerHTML.substring(6)
     }
+}
+
+// Mobile
+// function called when user chooses option from mobile menu
+function onClickMobile(btnClicked) {
+    let menu = document.getElementById("mobile-menu").style.display = "none"
+    
 }
