@@ -658,3 +658,58 @@ h3 {
     margin: auto;
     display: inline-block;
 }
+
+/* The relevant style for the menu that appears on mobile */
+
+#desktop {
+    display: none;
+}
+
+#mobile {
+    
+}
+
+.mobile-cell {
+    height: 16.6%;
+  }
+  
+#name-mobile-text {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.mobile-text {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    text-decoration: underline;
+  }
+  
+  
+#mobile-menu {
+    height: 100%;
+    width: 100%;
+  }
+
+  #proj-mobile {
+    background-color: blanchedalmond;
+  }
+
+  #about-me-mobile {
+    background-color: rgba(61, 93, 170, .7);
+  }
+
+  #blog-mobile {
+    background-color: rgba(231, 34, 41, .88);
+  }
+
+  #resume-mobile {
+    background-color: rgba(251, 193, 24, .8);
+  }
+
+  #misc-mobile {
+    background-color: ;
+  }

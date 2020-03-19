@@ -14,94 +14,184 @@
 </head>
 
 <body id="body">
-    <header id="header">
-        <div id="name-container">
-            Jacob Hotz
-        </div>
-    </header>
+    <div id="desktop">
+        <header id="header">
+            <div id="name-container">
+                Jacob Hotz
+            </div>
+        </header>
 
-    <div id="shape-container">
-        <div class="shape circle red" id="red">
-            <button class="shape-button" id="proj" onclick="onClickDismissShapes(this)">Projects</button>
+        <div id="shape-container">
+            <div class="shape circle red" id="red">
+                <button class="shape-button" id="proj" onclick="onClickDismissShapes(this)">Projects</button>
+            </div>
+            <div class="shape triangle blanchedalmond" id="blanchedalmond">
+                <button class="shape-button" id="about" onclick="onClickDismissShapes(this)">About me</button>
+                <button class="non-alt shape-button" id="blog" onclick="onClickDismissShapes(this)">Blog</button>
+            </div>
+            <div class="shape parellelogram blue" id="blue">
+                <button class="alt" id="resume-alt">Résumé</button>
+                <!--see css for explanation of "alt"-->
+                <button class="alt" id="blog-alt">Blog</button>
+            </div>
+            <div class="shape circle yellow" id="yellow">
+                <button class="shape-button" id="misc" onclick="onClickDismissShapes(this)">Misc.</button>
+                <button class="non-alt shape-button" id="resume" onclick="onClickDismissShapes(this)">Résumé</button>
+            </div>
         </div>
-        <div class="shape triangle blanchedalmond" id="blanchedalmond">
-            <button class="shape-button" id="about" onclick="onClickDismissShapes(this)">About me</button>
-            <button class="non-alt shape-button" id="blog" onclick="onClickDismissShapes(this)">Blog</button>
-        </div>
-        <div class="shape parellelogram blue" id="blue">
-            <button class="alt" id="resume-alt">Résumé</button>
-            <!--see css for explanation of "alt"-->
-            <button class="alt" id="blog-alt">Blog</button>
-        </div>
-        <div class="shape circle yellow" id="yellow">
-            <button class="shape-button" id="misc" onclick="onClickDismissShapes(this)">Misc.</button>
-            <button class="non-alt shape-button" id="resume" onclick="onClickDismissShapes(this)">Résumé</button>
-        </div>
-    </div>
 
-    <div id="proj-hidden">
-        <h3 class="module-header">Projects</h3>
-        <div id="projectDescriptions">
-            <br><br><h1>Personal</h1>
-            <br><p id="proj1" class="proj-entry"><strong>Wista (iOS weather app): </strong> <a class="link" href="https://apps.apple.com/tt/app/wista/id1494067759">Available on the app store</a>, Wista is a minimalistic, stylish weather app. The app makes HTTP GET requests to the <a class="link" href="https://openweathermap.org">OpenWeatherMap API</a> and saves user preferences. I made Wista after learning Swift and iOS development watching videos and doing tutorials.<br><br><strong>Languages used:</strong> Swift</p>
-            <br><p id="proj2" class="proj-entry"><strong>This website: </strong>I made this website from scratch. I taught myself HTML and CSS using CodeAcademy. TLDR: Next time use a library for CSS animations. But joking aside I like knowing what's happening under the hood so to speak and so the decision to not use frameworks/libraries as a beginner was informed by that. But next time I'll use frameworks. (:<br><br><strong>Languages used:</strong> vanilla Javscript, CSS, HTML</p>
-            <br><p id="proj3" class="proj-entry"><strong>Fill it in: </strong> I have plans for an iOS app that is currently only in preliminary stages.<br><br><strong>Languages used:</strong> Swift</p>
-            <br><br><h1>University</h1>
-            <br><p id="proj4" class="proj-entry"><strong>FUSE-based file system: </strong>mounts onto Linux OS to allow commands such as ls, cat, stat, and readlink. Images of file systems are read and computed to find relevant information such as size, block size, volume name, inodes, and block groups. Path resolution is also implemented by traversing directory entries in block groups.<br><br><strong>Languages used:</strong> C</p>
-            <br><p id="proj5" class="proj-entry"><strong>DNS Resolver: </strong>wrote a client application that performed iterative DNS queries in accordance with RFC 1035 (with additional support for IPV6). Features included resolution of CNAMES (with detection of loops), caching of results, and identification of record types. Uses UDP packet protocol.<br><br><strong>Languages used:</strong> Java</p>
-            <br><p id="proj6" class="proj-entry"><strong>Insight UBC: </strong> A rite of passage for UBC students, we write a large fullstack web application with asynchronous I/O and networking operations and a RESTful API. The site returns results for queries of UBC courses and rooms with lots of filtering options. <br><br><strong>Languages used:</strong> Typescript, Node.js, Javscript (supplied with HTML)</p>
-            <br><p id="proj7" class="proj-entry"><strong>MPI message passing with websockets: </strong> My final project for a course on concurrency. I extended an application that my professor had wrote with MPI message passing over TCP and modified it to use a websocket connection. I used <a class="link" href="https://github.com/warmcat/libwebsockets">Libwebsockets</a> to achieve this. I used Pthreads with mutex locks. During the course we also covered Libuv and various ways of writing concurrent code + discussed parallelism.<br><br><strong>Languages used:</strong> C, Javascript</p>
-        </div>
-    </div>
+        <div id="mobile-container">
 
-    <div id="about-me-hidden">
-        <h3 class="module-header">About Me</h3>
-        <div id="aboutMeDescription">
-            <br><p class="helvetica spacing" id="about-me-paragraph">I'm a student and teaching assistant at the University of British Columbia. <br><br>After two failed auditions with the UBC Improv Team (Wholly recommended; they're a funny lot), I decided that I should instead pursue my other, more serious passion: writing wittily commented code. <br><br>My interests include pedagogy/learning, linguistics, and interactive media.<br><br>Some hobbies are cooking (badly), listening to podcasts, reading, and running through the forest in the morning when the light peaks through the trees.</p>
+        </div>
+
+        <div id="proj-hidden">
+            <h3 class="module-header">Projects</h3>
+            <div id="projectDescriptions">
+                <br><br>
+                <h1>Personal</h1>
+                <br>
+                <p id="proj1" class="proj-entry"><strong>Wista (iOS weather app): </strong> <a class="link"
+                        href="https://apps.apple.com/tt/app/wista/id1494067759">Available on the app store</a>, Wista is
+                    a minimalistic, stylish weather app. The app makes HTTP GET requests to the <a class="link"
+                        href="https://openweathermap.org">OpenWeatherMap API</a> and saves user preferences. I made
+                    Wista after learning Swift and iOS development watching videos and doing
+                    tutorials.<br><br><strong>Languages used:</strong> Swift</p>
+                <br>
+                <p id="proj2" class="proj-entry"><strong>This website: </strong>I made this website from scratch. I
+                    taught myself HTML and CSS using CodeAcademy. TLDR: Next time use a library for CSS animations. But
+                    joking aside I like knowing what's happening under the hood so to speak and so the decision to not
+                    use frameworks/libraries as a beginner was informed by that. But next time I'll use frameworks.
+                    (:<br><br><strong>Languages used:</strong> vanilla Javscript, CSS, HTML</p>
+                <br>
+                <p id="proj3" class="proj-entry"><strong>Fill it in: </strong> I have plans for an iOS app that is
+                    currently only in preliminary stages.<br><br><strong>Languages used:</strong> Swift</p>
+                <br><br>
+                <h1>University</h1>
+                <br>
+                <p id="proj4" class="proj-entry"><strong>FUSE-based file system: </strong>mounts onto Linux OS to allow
+                    commands such as ls, cat, stat, and readlink. Images of file systems are read and computed to find
+                    relevant information such as size, block size, volume name, inodes, and block groups. Path
+                    resolution is also implemented by traversing directory entries in block
+                    groups.<br><br><strong>Languages used:</strong> C</p>
+                <br>
+                <p id="proj5" class="proj-entry"><strong>DNS Resolver: </strong>wrote a client application that performs
+                    iterative DNS queries in accordance with RFC 1035 (with additional support for IPV6). Features
+                    included resolution of CNAMES (with detection of loops), caching of results, and identification of
+                    record types. Uses UDP packet protocol.<br><br><strong>Languages used:</strong> Java</p>
+                <br>
+                <p id="proj6" class="proj-entry"><strong>Insight UBC: </strong> A rite of passage for UBC students, we
+                    write a large fullstack web application with asynchronous I/O and networking operations and a
+                    RESTful API. The site returns results for queries of UBC courses and rooms with lots of filtering
+                    options. <br><br><strong>Languages used:</strong> Typescript, Node.js, Javscript (supplied with
+                    HTML)</p>
+                <br>
+                <p id="proj7" class="proj-entry"><strong>MPI message passing with websockets: </strong> My final project
+                    for a course on concurrency. I extended an application that my professor had wrote with MPI message
+                    passing over TCP and modified it to use a websocket connection. I used <a class="link"
+                        href="https://github.com/warmcat/libwebsockets">Libwebsockets</a> to achieve this. I used
+                    Pthreads with mutex locks. During the course we also covered Libuv and various ways of writing
+                    concurrent code + discussed parallelism.<br><br><strong>Languages used:</strong> C, Javascript</p>
+            </div>
+        </div>
+
+        <div id="about-me-hidden">
+            <h3 class="module-header">About Me</h3>
+            <div id="aboutMeDescription">
+                <br>
+                <p class="helvetica spacing" id="about-me-paragraph">I'm a student and teaching assistant at the
+                    University of British Columbia. <br><br>After two failed auditions with the UBC Improv Team (Wholly
+                    recommended; they're a funny lot), I decided that I should instead pursue my other, more serious
+                    passion: writing wittily commented code. <br><br>My interests include pedagogy/learning,
+                    linguistics, and interactive media.<br><br>Some hobbies are cooking (badly), listening to podcasts,
+                    reading, and running through the forest in the morning when the light peaks through the trees.</p>
                 <br><br><img class="about-me-img" src="./images/chef_drawing.png" alt="cooking">
                 <div id="blank-space"></div>
                 <img class="about-me-img" src="./images/run_drawing.png" alt="running">
+            </div>
+        </div>
+
+        <div id="blog-hidden">
+            <h3 class="module-header">Blog</h3>
+            <div id="blog1">
+                <br>
+                <h1>No entries yet</h1>
+            </div>
+        </div>
+
+        <div id="resume-hidden">
+            <h3 class="module-header">Résumé</h3>
+            <div id="pdf-wrapper">
+                <br><br><br><iframe id="resume-iframe"
+                    src="https://drive.google.com/file/d/1Xn34K7tcCJ4pBYMfuiaNKpeWEBwrAaAA/preview"
+                    frameborder="0"></iframe>
+            </div>
+        </div>
+
+        <div id="misc-hidden">
+            <h3 class="module-header">Miscellaneous</h3>
+            <div id="misc-description">
+                <br><br>
+                <p class="helvetica spacing" id="misc-paragraph">I intend to use this section as a space for cool
+                    projects that don't necessarily have to do with software engineering or the like. Right now it's
+                    just music—but I hope this inspires me to make more music and even pick up other hobbies (If you've
+                    seen the "About Me" section, you already know that my drawing needs work).
+                    <br><br>If you're looking at this website because you're interested in hiring me, then the below
+                    probably isn't too relevent, but—who knows—if we're in a pinch and Hans Zimmer isn't available then
+                    I might be the next best option. If you're looking at this because you're my friend, then let me
+                    know what you think (or roast me for having a SoundCloud). And if you don't fall into these two
+                    categories and are just an internet stranger, then welcome! :)</p>
+                <br><br><iframe id="souncloud-1" class="soundcloud" scrolling="no" frameborder="no" allow="autoplay"
+                    src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/773969314&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe>
+                <br><br><iframe id="souncloud-1" class="soundcloud" scrolling="no" frameborder="no" allow="autoplay"
+                    src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/773969206&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe>
+                <br><br><br>
+                <h1>Acknowledgements</h1>
+                <br>
+                <p class="helvetica spacing" id="acknowledgements">I made this site from scratch with JS, CSS, and HTML;
+                    however the <a class="link"
+                        href="https://thenounproject.com/search/?q=back&creator=1915416&i=878298">image</a> for the back
+                    button was made by joeartcon on The Noun Project and is used under a CC BY license. Colours were
+                    chosen based on works by Wassily Kandinsky and Eugen Batz. Also I use the font <a class="link"
+                        href="https://fonts.google.com/specimen/Poiret+One">Poiret One</a> designed by Denis Masharov
+                    under the Open Font license.
+            </div>
+        </div>
+
+        <footer id="footer">
+            <div class="icon" id="email">
+                <input id="emailImg" type="image" src="./images/email_image_1.png" alt="email" onclick="copyEmail()">
+                <a id="address">hoacob@gmail.com</a>
+            </div>
+            <div class="icon" id="github"><a href="https://github.com/hotzjacobb">
+                    <img class="grid" src="./images/github_image.png" alt="github">
+                </a></div>
+            <div class="icon" id="linkedin"><a href="https://www.linkedin.com/in/jacob-hotz-93ba03198/">
+                    <img class="grid" src="./images/linkedin_image_1.png" alt="linkedin">
+                </a></div>
+        </footer>
+    </div>
+    <div id="mobile">
+        <div id="mobile-menu">
+            <div id="name-mobile" class="mobile-cell">
+                <h3 id="name-mobile-text">Jacob Hotz</h3>
+            </div>
+            <div id="proj-mobile" class="mobile-cell">
+                <p class="mobile-text">Projects</p>
+            </div>
+            <div id="about-me-mobile" class="mobile-cell">
+                <p class="mobile-text">About Me</p>
+            </div>
+            <div id="blog-mobile" class="mobile-cell">
+                <p class="mobile-text">Blog</p>
+            </div>
+            <div id="resume-mobile" class="mobile-cell">
+                <p class="mobile-text">Résumé</p>
+            </div>
+            <div id="misc-mobile" class="mobile-cell">
+                <p class="mobile-text">Misc.</p>
+            </div>
         </div>
     </div>
-
-    <div id="blog-hidden">
-        <h3 class="module-header">Blog</h3>
-        <div id="blog1">
-            <br><h1>No entries yet</h1>
-        </div>
-    </div>
-
-    <div id="resume-hidden">
-        <h3 class="module-header">Résumé</h3>
-        <div id="pdf-wrapper">
-            <br><br><br><iframe id="resume-iframe" src="https://drive.google.com/file/d/1Xn34K7tcCJ4pBYMfuiaNKpeWEBwrAaAA/preview" frameborder="0"></iframe>
-        </div>
-    </div>
-
-    <div id="misc-hidden">
-        <h3 class="module-header">Miscellaneous</h3>
-        <div id="misc-description">
-            <br><br><p class="helvetica spacing" id="misc-paragraph">I intend to use this section as a space for cool projects that don't necessarily have to do with software engineering or the like. Right now it's just music—but I hope this inspires me to make more music and even pick up other hobbies (If you've seen the "About Me" section, you already know that my drawing needs work). 
-            <br><br>If you're looking at this website because you're interested in hiring me, then the below probably isn't too relevent, but—who knows—if we're in a pinch and Hans Zimmer isn't available then I might be the next best option. If you're looking at this because you're my friend, then let me know what you think (or roast me for having a SoundCloud). And if you don't fall into these two categories and are just an internet stranger, then welcome! :)</p>
-            <br><br><iframe id="souncloud-1" class="soundcloud" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/773969314&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe>
-            <br><br><iframe id="souncloud-1" class="soundcloud" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/773969206&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe>
-            <br><br><br><h1>Acknowledgements</h1>
-            <br><p class="helvetica spacing" id="acknowledgements">I made this site from scratch with JS, CSS, and HTML; however the <a class="link" href="https://thenounproject.com/search/?q=back&creator=1915416&i=878298">image</a> for the back button was made by joeartcon on The Noun Project and is used under a CC BY license. Colours were chosen based on works by Wassily Kandinsky and Eugen Batz. Also I use the font <a class="link" href="https://fonts.google.com/specimen/Poiret+One">Poiret One</a> designed by Denis Masharov under the Open Font license.
-        </div>
-    </div>
-
-    <footer id="footer">
-        <div class="icon" id="email">
-            <input id="emailImg" type="image" src="./images/email_image_1.png" alt="email" onclick="copyEmail()">
-            <a id="address">hoacob@gmail.com</a>
-        </div>
-        <div class="icon" id="github"><a href="https://github.com/hotzjacobb">
-                <img class="grid" src="./images/github_image.png" alt="github">
-            </a></div>
-        <div class="icon" id="linkedin"><a href="https://www.linkedin.com/in/jacob-hotz-93ba03198/">
-                <img class="grid" src="./images/linkedin_image_1.png" alt="linkedin">
-            </a></div>
-    </footer>
 </body>
 
 </html>
