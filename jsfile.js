@@ -1,7 +1,8 @@
 // Created by Jacob Hotz 17 Dec. 2019
 
 
-// Called on page load to decide whether to show the mobile or desktop version
+// Called on page load to decide whether to show the mobile or desktop version; 
+// also sets to correct email for mobile after short timeput to avoid scrapers
 
 window.onload = onLoadVersion
 
@@ -11,6 +12,10 @@ function onLoadVersion() {
     } else {
         document.getElementById("desktop").style.display = "block"
     }
+    setTimeout(function() {   // basic scraper defense
+        let emailLink = document.getElementById("email-link-mobile")
+        emailLink.href = emailLink.href.substring(0,10) + "z" + emailLink.href.substring(10)
+    }, 150)
 }
 
 // credit to https://stackoverflow.com/questions/11381673/detecting-a-mobile-browser
