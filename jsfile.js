@@ -272,8 +272,8 @@ function restoreInitialPage() {
 
     for (let shape of shapes) {
         shape.classList.remove("dismiss")
-        shape.classList.remove("centred")
         shape.classList.remove("textclicked")
+        shape.classList.remove("centred")
     }
 
     toggleAlts()  // go back to non-animation labels for correct z-value
